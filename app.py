@@ -2,10 +2,10 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-# 1. Enterprise Page Global Settings
+# 1. Enterprise Page Global Settings (Must be the very first command)
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="🏢", layout="wide")
 
-# 2. Premium Enterprise Dark Mode Core Styling
+# 2. Premium Enterprise Dark Mode Core Styling (Guarantees crisp contrast text)
 st.markdown("""
     <style>
     .stApp {
@@ -31,7 +31,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Sidebar Corporate Navigation (Strict 3 Pages Architecture)
+# 3. Sidebar Corporate Navigation (Strict 3 Pages Flat Architecture)
 st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
 page = st.sidebar.radio("Corporate Directory Matrix:", ["🏢 Corporate Overview", "⚙️ Enterprise Services Matrix", "🤖 Autonomous AI Support Agent"])
 
@@ -57,7 +57,7 @@ if page == "🏢 Corporate Overview":
 # ==================== PAGE 2: REAL-WORLD SYSTEMS PORTFOLIO ====================
 if page == "⚙️ Enterprise Services Matrix":
     st.title("⚙️ Global Engineering Capabilities & Core Technology Verticals")
-    st.write("Review our high-performance technical service catalog engineered to power modern enterprise infrastructure scales seamlessly.")
+    st.write("Review our high-performance technical service catalog engineered to power modern enterprise infrastructure scales seamlessly (Systems Limited & 10Pearls Corporate Grade).")
     
     # DevOps Vertical
     st.markdown("---")
@@ -115,6 +115,7 @@ if page == "🤖 Autonomous AI Support Agent":
             with st.chat_message("assistant"): st.write(msg.content)
             
     user_input = st.chat_input("Ask Zain Tech Assistant Anything...")
+    
     if user_input:
         with st.chat_message("user"): st.write(user_input)
         st.session_state.chat_history.append(HumanMessage(content=user_input))
