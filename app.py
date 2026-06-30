@@ -138,4 +138,4 @@ def chat_agent_page():
 
         with st.chat_message("assistant", avatar="🤖"):
             with st.spinner("⚡ System thinking..."):
-                try:
+                system_instruction = "Aap Zain Tech Automation Solutions ke official ai assistant hain. DevOps, Security, AI, Full Stack platforms ke baray mein baat karein. Agar koi price poochaey toh kahen custom design ke liye founder Zain Ul Abadeen se is number par direct contact karein Call/WhatsApp: 03221837390."
