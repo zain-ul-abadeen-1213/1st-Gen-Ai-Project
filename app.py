@@ -28,7 +28,6 @@ st.markdown("""
         font-weight: bold !important;
         background-color: #ffffff !important;
     }
-    /* Fixing default text color overrides inside containers */
     div.stMarkdown p, div.stText p, span {
         color: #ffffff !important;
         font-size: 16px !important;
@@ -129,16 +128,14 @@ if page == "🤖 Autonomous AI Support Agent":
     
     for msg in st.session_state.chat_history:
         if isinstance(msg, HumanMessage):
-            with st.chat_message("user"): st.write(msg.content)
+            st.text(f"User: {msg.content}")
         if isinstance(msg, AIMessage):
-            with st.chat_message("assistant"): st.write(msg.content)
+            st.info(f"AI Agent: {msg.content}")
             
     user_input = st.chat_input("Ask Zain Tech Assistant Anything...")
     if user_input:
-        with st.chat_message("user"): st.write(user_input)
         st.session_state.chat_history.append(HumanMessage(content=user_input))
         
         if not groq_key:
             st.warning("⚠️ High security cloud access credential required. Please type your Groq Cloud Access Token inside the sidebar dashboard.")
         else:
-            with st.chat_message("assistant"):
