@@ -5,17 +5,73 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 # 1. Real-World Page Configurations
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="💻", layout="wide")
 
-# 2. Base Dark/Light Universal Text Contrast Sync via Config Settings
+# 2. Premium Deep Cyber Dark Interface Styling (Advanced Custom CSS)
 st.markdown("""
     <style>
-    /* Absolute Input Field Text Contrast Fix */
-    textarea[data-testid="stChatInputTextArea"] {
-        color: #000000 !important;
+    /* Main Background & Base Typography Settings */
+    .stApp {
+        background-color: #030712 !important;
+        color: #f3f4f6 !important;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    
+    /* Left Sidebar Panel Modern Contrast Override */
+    section[data-testid="stSidebar"] {
+        background-color: #0b0f19 !important;
+        border-right: 1px solid #1f2937 !important;
+    }
+    div[data-testid="stSidebarUserContent"] div.stRadio label p {
+        color: #ffffff !important;
+        font-weight: 600 !important;
+    }
+    div[data-testid="stSidebarUserContent"] h1, 
+    div[data-testid="stSidebarUserContent"] h2, 
+    div[data-testid="stSidebarUserContent"] h3, 
+    div[data-testid="stSidebarUserContent"] h4, 
+    div[data-testid="stSidebarUserContent"] label {
+        color: #ffffff !important;
         font-weight: bold !important;
+    }
+
+    /* Fixed Chat Input Visibility - High Deep Contrast Text */
+    textarea[data-testid="stChatInputTextArea"] {
+        color: #0f172a !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
         background-color: #ffffff !important;
+        border: 2px solid #3b82f6 !important;
+        border-radius: 8px !important;
     }
     textarea[data-testid="stChatInputTextArea"]::placeholder {
-        color: #555555 !important;
+        color: #64748b !important;
+    }
+
+    /* Stylish Premium Containers Layout */
+    div[data-testid="stVerticalBlockBorderWrapper"] {
+        background: linear-gradient(145deg, #0f172a, #0b0f19) !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 12px !important;
+        padding: 25px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Global Streamlit Buttons Custom Polish */
+    div.stButton > button, div.stDownloadButton > button, .stLinkButton > a {
+        color: #ffffff !important;
+        background: linear-gradient(135deg, #1e3a8a, #2563eb) !important;
+        border: 1px solid #3b82f6 !important;
+        font-weight: bold !important;
+        border-radius: 8px !important;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 10px 0 !important;
+        display: inline-block !important;
+        text-decoration: none !important;
+    }
+    div.stButton > button:hover, .stLinkButton > a:hover {
+        background: linear-gradient(135deg, #2563eb, #3b82f6) !important;
+        box-shadow: 0px 0px 15px rgba(59, 130, 246, 0.5) !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -45,7 +101,7 @@ services_matrix = {
 }
 
 # 4. Professional Sidebar Corporate Menu Layout
-st.sidebar.title("💻 ZAIN TECH ENGINES")
+st.sidebar.markdown("<h2 style='color:#60a5fa;'>💻 ZAIN TECH ENGINES</h2>", unsafe_allow_html=True)
 selected_section = st.sidebar.radio("Corporate Directory Matrix:", [
     "🏢 Headquarters Showcase",
     "⚙️ DevOps Infrastructure Solutions",
@@ -56,7 +112,7 @@ selected_section = st.sidebar.radio("Corporate Directory Matrix:", [
 ])
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("#### 🛠️ ACCESS SECURITY")
+st.sidebar.markdown("<h4 style='color:#a78bfa;'>🛠¾ ACCESS SECURITY</h4>", unsafe_allow_html=True)
 groq_api_entry = st.sidebar.text_input("Enter Groq Access Token:", type="password")
 st.sidebar.info("Zain Tech Escalation Desk:\n📞 Call/WhatsApp: 03221837390")
 
@@ -65,20 +121,18 @@ base_whatsapp_link = "https://wa.me"
 
 # ==================== PAGE 1: HEADQUARTERS SHOWCASE ====================
 if selected_section == "🏢 Headquarters Showcase":
-    st.title("🚀 ZAIN TECH AUTOMATION SOLUTIONS")
-    st.subheader("Enterprise Engineering & Systemic Architectures Matrix")
+    st.markdown("<h1 style='color:#60a5fa; text-align:center;'>🚀 ZAIN TECH AUTOMATION SOLUTIONS</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align:center; color:#9ca3af; letter-spacing:2px; text-transform:uppercase; margin-bottom:40px;'>Enterprise Engineering & Systemic Architectures Matrix</p>", unsafe_allow_html=True)
     
     col_left, col_right = st.columns([1.2, 1])
     with col_left:
         st.write("Zain Tech Automation Solutions engineers mission-critical cloud configurations, multi-layer computational machine architectures, predictive learning models, and secure full-stack backend platforms designed to automate enterprise operations flawlessly.")
         st.info("👈 Use the Corporate Directory Matrix Menu inside the left side sidebar panel to explore our specialized premium technology sectors directly.")
-        
-        # Safe URL Link Action Button
-        st.link_button("📞 Schedule Enterprise Consultation Now", f"{base_whatsapp_link}General%20Enterprise%20Consultation", type="primary")
+        st.link_button("📞 Schedule Enterprise Consultation Now", f"{base_whatsapp_link}General%20Enterprise%20Consultation")
     with col_right:
         st.image("https://unsplash.com", caption="Zain Tech Infrastructure Management Node")
 
-# ==================== GENERIC SERVICES RENDER (ERROR FREE CORE INTERFACE) ====================
+# ==================== GENERIC SERVICES RENDER ====================
 elif selected_section != "🤖 Interactive Autonomous AI Support Agent":
     target_key = ""
     if "DevOps" in selected_section: target_key = "⚙️ DevOps Infrastructure"
@@ -91,54 +145,20 @@ elif selected_section != "🤖 Interactive Autonomous AI Support Agent":
         st.write("Review our live commercial technical service line packages below. Every deployment node contains full operations documentation support.")
         st.markdown("---")
         
-        # Completely Pure Streamlit Block (Zero risk of HTML or brace formatting errors)
+        # Core Matrix Render Loops
         for service in services_matrix[target_key]:
-            st.subheader(f"🔹 {service['title']}")
-            st.caption(f"Domain Focus Matrix: {service['scope']}")
-            st.write(service['desc'])
-            
-            # Rendering live clean text pricing data
-            st.metric(label="Base Implementation Cost", value=service['price'])
-            
-            # Interactive System Buttons using clean Streamlit definitions
-            if st.button(f"🛒 Add Framework to Queue System ({service['title']})", key=f"cart_{service['title']}"):
-                st.toast(f"System Matrix Pipeline Initialized for: {service['title']}")
+            with st.container():
+                st.subheader(f"🔹 {service['title']}")
+                st.caption(f"Domain Focus Matrix: {service['scope']}")
+                st.write(service['desc'])
+                st.metric(label="Base Implementation Cost", value=service['price'])
                 
-            custom_wa_text = f"{base_whatsapp_link}{service['title'].replace(' ', '%20')}"
-            st.link_button("📞 Purchase / Deploy on WhatsApp Live", custom_wa_text)
-            st.markdown("---")
+                if st.button(f"🛒 Add Framework to Queue System ({service['title']})", key=f"cart_{service['title']}"):
+                    st.toast(f"System Matrix Pipeline Initialized for: {service['title']}")
+                    
+                custom_wa_text = f"{base_whatsapp_link}{service['title'].replace(' ', '%20')}"
+                st.link_button("📞 Purchase / Deploy on WhatsApp Live", custom_wa_text)
 
 # ==================== PAGE 6: LIVE AI CHATBOT AGENT ====================
 if selected_section == "🤖 Interactive Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
-    st.write("Talk instantly with our system framework automation representative regarding technical metrics or deployment prices.")
-    
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
-        
-    for msg in st.session_state.chat_history:
-        if isinstance(msg, HumanMessage):
-            with st.chat_message("user"): st.write(msg.content)
-        if isinstance(msg, AIMessage):
-            with st.chat_message("assistant"): st.write(msg.content)
-            
-    user_input = st.chat_input("Ask Zain Tech Automation Solutions Matrix Agent...")
-    
-    if user_input:
-        with st.chat_message("user"): st.write(user_input)
-        st.session_state.chat_history.append(HumanMessage(content=user_input))
-        
-        if not groq_api_entry:
-            st.warning("⚠️ High security cloud access credential required. Please type your Groq Cloud Access Token inside the sidebar control dashboard.")
-        else:
-            with st.chat_message("assistant"):
-                with st.spinner("⚡ Running programmatic pipeline lookup matrix..."):
-                    try:
-                        system_rule = "Aap Zain Tech Automation Solutions ke official enterprise ai representative assistant hain. Hamari services DevOps, Security audits, Neural Network Machine Learning Models aur Web Apps hain. Pricing ya deployment deal ki baat ho toh kahein ke complete execution strategy ke liye founder Zain Ul Abadeen se direct call ya WhatsApp rabta karein: +923221837390."
-                        messages_pipeline = [SystemMessage(content=system_rule)] + st.session_state.chat_history
-                        llm_engine = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=groq_api_entry)
-                        execution_response = llm_engine.invoke(messages_pipeline)
-                        st.write(execution_response.content)
-                        st.session_state.chat_history.append(AIMessage(content=execution_response.content))
-                    except Exception as system_crash_error:
-                        st.error(f"Operational Exception Triggered: {system_crash_error}")
