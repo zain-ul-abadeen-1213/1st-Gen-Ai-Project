@@ -15,18 +15,20 @@ st.markdown("""
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
     
-    /* Left Sidebar Panel Modern Contrast Override */
+    /* LEFT SIDEBAR PANEL TEXT CONTRAST FIX */
     section[data-testid="stSidebar"] {
         background-color: #0b0f19 !important;
         border-right: 1px solid #1f2937 !important;
     }
+    /* Making Sidebar Text Bright White and Bold */
     div[data-testid="stSidebarUserContent"] div.stRadio label p {
         color: #ffffff !important;
         font-weight: 600 !important;
+        font-size: 15px !important;
     }
-    div[data-testid="stSidebarUserContent"] h1, 
+    div[data-testid="stSidebarUserContent"] h1,
     div[data-testid="stSidebarUserContent"] h2, 
-    div[data-testid="stSidebarUserContent"] h3, 
+    div[data-testid="stSidebarUserContent"] h3,
     div[data-testid="stSidebarUserContent"] h4, 
     div[data-testid="stSidebarUserContent"] label {
         color: #ffffff !important;
@@ -35,15 +37,15 @@ st.markdown("""
 
     /* Fixed Chat Input Visibility - High Deep Contrast Text */
     textarea[data-testid="stChatInputTextArea"] {
-        color: #0f172a !important;
-        font-weight: 600 !important;
+        color: #000000 !important;
+        font-weight: bold !important;
         font-size: 16px !important;
         background-color: #ffffff !important;
         border: 2px solid #3b82f6 !important;
         border-radius: 8px !important;
     }
     textarea[data-testid="stChatInputTextArea"]::placeholder {
-        color: #64748b !important;
+        color: #555555 !important;
     }
 
     /* Stylish Premium Containers Layout */
@@ -76,29 +78,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Secure Core Dataset (Real Corporate Technical Services Portfolio)
-services_matrix = {
-    "⚙️ DevOps Infrastructure": [
-        {"title": "Zero-Downtime AWS/GCP Multi-Region Pipeline", "desc": "Enterprise level high-availability scaling configuration layout, orchestrated via custom automated scripts.", "price": "$1,200", "scope": "Enterprise Cloud Setup"},
-        {"title": "Kubernetes Production Multi-Tenant Clustering", "desc": "Production-grade auto-scaling infrastructure, integrated traffic proxy mesh node parameters deployment.", "price": "$1,500", "scope": "Container Orchestration"},
-        {"title": "Infrastructure-as-Code (Terraform & Ansible)", "desc": "Complete environment cloning automation blocks setup for programmatic execution routines.", "price": "$800", "scope": "Cloud Automation"}
-    ],
-    "🛡️ Cyber Security Cloud": [
-        {"title": "Full-Scope Penetration Testing & Source Auditing", "desc": "Deep blackbox system scans, enterprise network breach simulation, logic validation patch reporting.", "price": "$2,500", "scope": "VAPT Audit Security"},
-        {"title": "Zero-Trust Identity Multi-Layered Access Architecture", "desc": "Automated authentication servers configuration setups, secure API data pipeline hashing blocks.", "price": "$1,100", "scope": "Enterprise Access"},
-        {"title": "Ransomware Defense Shield & Server Hardening", "desc": "Kernel configuration locks, firewall matrices deployment, automatic server intrusion backup scripts.", "price": "$950", "scope": "Server Hardening"}
-    ],
-    "🧠 AI, ML & Deep Learning": [
-        {"title": "Predictive Time-Series Data Forecasting Model", "desc": "Custom computational analytical algorithms architecture deployed for corporate transaction monitoring scaling.", "price": "$1,800", "scope": "Business ML Analytics"},
-        {"title": "Computer Vision Real-Time Detection Node", "desc": "Intelligent neural scanning frame matrices for spatial object tracking, semantic boundary analysis.", "price": "$2,200", "scope": "Neural Vision Engine"},
-        {"title": "Custom Autonomous LangChain Chat Agent Setup", "desc": "Corporate vector database connections architecture config, advanced Llama tuning logic layers setup.", "price": "$1,400", "scope": "Generative AI Systems"}
-    ],
-    "🌐 Apps & Automation Web": [
-        {"title": "Full-Stack Enterprise Software Web Dashboard", "desc": "Modern secure application layout built with Next.js interface, fast asynchronous FastAPI data backends.", "price": "$2,000", "scope": "Next-Gen Software"},
-        {"title": "High-Speed Multi-Threaded Headless Selenium Scraper", "desc": "Programmatic anti-bot bypass crawler automation blocks config, data capture indexing engines execution.", "price": "$650", "scope": "Data Scraping Automation"},
-        {"title": "Distributed Caching and Database Tuning Architecture", "desc": "PostgreSQL layout structural optimization configurations setup, optimized Redis storage structures deployment.", "price": "$700", "scope": "Database Performance"}
-    ]
-}
+# 3. Persistent State Maintenance
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+if "groq_api_key" not in st.session_state:
+    st.session_state.groq_api_key = ""
 
 # 4. Professional Sidebar Corporate Menu Layout
 st.sidebar.markdown("<h2 style='color:#60a5fa;'>💻 ZAIN TECH ENGINES</h2>", unsafe_allow_html=True)
@@ -112,14 +96,39 @@ selected_section = st.sidebar.radio("Corporate Directory Matrix:", [
 ])
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<h4 style='color:#a78bfa;'>🛠¾ ACCESS SECURITY</h4>", unsafe_allow_html=True)
-groq_api_entry = st.sidebar.text_input("Enter Groq Access Token:", type="password")
+st.sidebar.markdown("<h4 style='color:#a78bfa;'>🛠️ ACCESS SECURITY</h4>", unsafe_allow_html=True)
+input_key = st.sidebar.text_input("Enter Groq Access Token:", value=st.session_state.groq_api_key, type="password")
+st.session_state.groq_api_key = input_key
 st.sidebar.info("Zain Tech Escalation Desk:\n📞 Call/WhatsApp: 03221837390")
 
 # Universal Direct Contact WhatsApp Core Link
 base_whatsapp_link = "https://wa.me"
 
-# ==================== PAGE 1: HEADQUARTERS SHOWCASE ====================
+# Real-World Corporate Technical Services Portfolio Dataset
+services_matrix = {
+    "⚙️ DevOps Infrastructure Solutions": [
+        {"title": "Zero-Downtime AWS/GCP Multi-Region Pipeline", "desc": "Enterprise level high-availability scaling configuration layout, orchestrated via custom automated scripts.", "price": "$1,200", "scope": "Enterprise Cloud Setup"},
+        {"title": "Kubernetes Production Multi-Tenant Clustering", "desc": "Production-grade auto-scaling infrastructure, integrated traffic proxy mesh node parameters deployment.", "price": "$1,500", "scope": "Container Orchestration"},
+        {"title": "Infrastructure-as-Code (Terraform & Ansible)", "desc": "Complete environment cloning automation blocks setup for programmatic execution routines.", "price": "$800", "scope": "Cloud Automation"}
+    ],
+    "🛡️ Enterprise Cyber Security Matrix": [
+        {"title": "Full-Scope Penetration Testing & Source Auditing", "desc": "Deep blackbox system scans, enterprise network breach simulation, logic validation patch reporting.", "price": "$2,500", "scope": "VAPT Audit Security"},
+        {"title": "Zero-Trust Identity Multi-Layered Access Architecture", "desc": "Automated authentication servers configuration setups, secure API data pipeline hashing blocks.", "price": "$1,100", "scope": "Enterprise Access"},
+        {"title": "Ransomware Defense Shield & Server Hardening", "desc": "Kernel configuration locks, firewall matrices deployment, automatic server intrusion backup scripts.", "price": "$950", "scope": "Server Hardening"}
+    ],
+    "🧠 Machine & Deep Learning Engines": [
+        {"title": "Predictive Time-Series Data Forecasting Model", "desc": "Custom computational analytical algorithms architecture deployed for corporate transaction monitoring scaling.", "price": "$1,800", "scope": "Business ML Analytics"},
+        {"title": "Computer Vision Real-Time Detection Node", "desc": "Intelligent neural scanning frame matrices for spatial object tracking, semantic boundary analysis.", "price": "$2,200", "scope": "Neural Vision Engine"},
+        {"title": "Custom Autonomous LangChain Chat Agent Setup", "desc": "Corporate vector database connections architecture config, advanced Llama tuning logic layers setup.", "price": "$1,400", "scope": "Generative AI Systems"}
+    ],
+    "🌐 Cloud Applications & Web Automation": [
+        {"title": "Full-Stack Enterprise Software Web Dashboard", "desc": "Modern secure application layout built with Next.js interface, fast asynchronous FastAPI data backends.", "price": "$2,000", "scope": "Next-Gen Software"},
+        {"title": "High-Speed Multi-Threaded Headless Selenium Scraper", "desc": "Programmatic anti-bot bypass crawler automation blocks config, data capture indexing engines execution.", "price": "$650", "scope": "Data Scraping Automation"},
+        {"title": "Distributed Caching and Database Tuning Architecture", "desc": "PostgreSQL layout structural optimization configurations setup, optimized Redis storage structures deployment.", "price": "$700", "scope": "Database Performance"}
+    ]
+}
+
+# ==================== ROUTER PATTERNS ====================
 if selected_section == "🏢 Headquarters Showcase":
     st.markdown("<h1 style='color:#60a5fa; text-align:center;'>🚀 ZAIN TECH AUTOMATION SOLUTIONS</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align:center; color:#9ca3af; letter-spacing:2px; text-transform:uppercase; margin-bottom:40px;'>Enterprise Engineering & Systemic Architectures Matrix</p>", unsafe_allow_html=True)
@@ -132,33 +141,25 @@ if selected_section == "🏢 Headquarters Showcase":
     with col_right:
         st.image("https://unsplash.com", caption="Zain Tech Infrastructure Management Node")
 
-# ==================== GENERIC SERVICES RENDER ====================
-elif selected_section != "🤖 Interactive Autonomous AI Support Agent":
-    target_key = ""
-    if "DevOps" in selected_section: target_key = "⚙️ DevOps Infrastructure"
-    elif "Cyber" in selected_section: target_key = "🛡️ Cyber Security Cloud"
-    elif "Machine" in selected_section: target_key = "🧠 AI, ML & Deep Learning"
-    elif "Cloud" in selected_section: target_key = "🌐 Apps & Automation Web"
-    
-    if target_key:
-        st.title(target_key)
-        st.write("Review our live commercial technical service line packages below. Every deployment node contains full operations documentation support.")
-        st.markdown("---")
-        
-        # Core Matrix Render Loops
-        for service in services_matrix[target_key]:
-            with st.container():
-                st.subheader(f"🔹 {service['title']}")
-                st.caption(f"Domain Focus Matrix: {service['scope']}")
-                st.write(service['desc'])
-                st.metric(label="Base Implementation Cost", value=service['price'])
-                
-                if st.button(f"🛒 Add Framework to Queue System ({service['title']})", key=f"cart_{service['title']}"):
-                    st.toast(f"System Matrix Pipeline Initialized for: {service['title']}")
-                    
-                custom_wa_text = f"{base_whatsapp_link}{service['title'].replace(' ', '%20')}"
-                st.link_button("📞 Purchase / Deploy on WhatsApp Live", custom_wa_text)
-
-# ==================== PAGE 6: LIVE AI CHATBOT AGENT ====================
-if selected_section == "🤖 Interactive Autonomous AI Support Agent":
+elif selected_section == "🤖 Interactive Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
+    st.write("Talk instantly with our system framework automation representative regarding technical metrics or deployment prices.")
+    
+    for msg in st.session_state.chat_history:
+        if isinstance(msg, HumanMessage):
+            with st.chat_message("user"): st.write(msg.content)
+        if isinstance(msg, AIMessage):
+            with st.chat_message("assistant"): st.write(msg.content)
+            
+    user_input = st.chat_input("Ask Zain Tech Automation Solutions Matrix Agent...")
+    
+    if user_input:
+        with st.chat_message("user"): st.write(user_input)
+        st.session_state.chat_history.append(HumanMessage(content=user_input))
+        
+        if not st.session_state.groq_api_key:
+            st.warning("⚠️ High security cloud access credential required. Please type your Groq Cloud Access Token inside the sidebar control dashboard.")
+        else:
+            with st.chat_message("assistant"):
+                with st.spinner("⚡ Running programmatic pipeline lookup matrix..."):
+                    try:
