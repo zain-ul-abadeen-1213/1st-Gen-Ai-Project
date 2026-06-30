@@ -35,7 +35,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Sidebar Corporate Navigation (Strict 3 Pages Flat Architecture)
+# 3. Sidebar Corporate Navigation (Strict 3 Pages Flat Navigation)
 st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
 page = st.sidebar.radio("Corporate Directory Matrix:", ["🏢 Corporate Overview", "⚙️ Enterprise Services Matrix", "🤖 Autonomous AI Support Agent"])
 
@@ -70,7 +70,6 @@ if page == "⚙️ Enterprise Services Matrix":
     st.title("⚙️ Global Engineering Capabilities & Core Technology Verticals")
     st.write("Review our high-performance technical service catalog engineered to power modern enterprise infrastructure scales seamlessly (Systems Limited & 10Pearls Corporate Grade).")
     
-    # DevOps Vertical
     st.markdown("---")
     st.markdown("### ☁️ Cloud Infrastructure & Enterprise DevOps Automation")
     st.write("We design resilient multi-cloud strategies and zero-downtime microservices orchestration loops built to manage massive computational processing loads efficiently.")
@@ -81,7 +80,6 @@ if page == "⚙️ Enterprise Services Matrix":
     st.write("🔹 **System Optimization & Cost Audits:** Real-time computational node analysis and metrics tracking to minimize corporate cloud billing variables.")
     st.link_button("🚀 Deploy Production Cloud Architecture via WhatsApp", wa_link)
 
-    # Cyber Security Vertical
     st.markdown("---")
     st.markdown("### 🛡️ Cyber Security Hardening & Vulnerability Assessments (VAPT)")
     st.write("We safeguard mission-critical digital assets by deploying multi-layer defense perimeters and auditing application software logics comprehensively.")
@@ -92,7 +90,6 @@ if page == "⚙️ Enterprise Services Matrix":
     st.write("🔹 **Compliance & Source Auditing:** Real-time software dependency vulnerability analysis and formatting architecture for international safety clearance audits.")
     st.link_button("🚀 Procure High-End Security Audits via WhatsApp", wa_link)
 
-    # Data Science & AI Vertical
     st.markdown("---")
     st.markdown("### 🧠 Predictive Analytics, Data Science & Generative AI")
     st.write("We build sophisticated custom language modules and train state-of-the-art neural computation matrices that turn raw corporate data sets into operational value.")
@@ -103,7 +100,6 @@ if page == "⚙️ Enterprise Services Matrix":
     st.write("🔹 **Intelligent Document Processing (OCR Tool):** High-speed multi-threaded parsing pipelines that interpret and classify complex data logs automatically.")
     st.link_button("🚀 Build Custom Autonomous AI Agents via WhatsApp", wa_link)
 
-    # Application Software Vertical
     st.markdown("---")
     st.markdown("### 🌐 Full-Stack Web Dashboards & High-Speed Crawler Automation")
     st.write("We develop secure enterprise application layers and automated data miners fueled by asynchronous data processing processing backend units.")
@@ -114,19 +110,17 @@ if page == "⚙️ Enterprise Services Matrix":
     st.write("🔹 **Microservices Overhaul:** Seamless structural migration refactoring legacy applications into modern decoupled secure API micro-units.")
     st.link_button("🚀 Order Production Software Platforms via WhatsApp", wa_link)
 
-# ==================== PAGE 3: AI CHAT AGENT (SUPER FLAT ERROR-FREE EXECUTION) ====================
+# ==================== PAGE 3: AI CHAT AGENT (SUPER FLAT ERROR-FREE) ====================
 if page == "🤖 Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
     st.write("Talk instantly with our system framework representative regarding technical metrics or deployment prices.")
     
-    # Display message logs
     for msg in st.session_state.chat_history:
         if isinstance(msg, HumanMessage):
             st.text(f"User: {msg.content}")
         if isinstance(msg, AIMessage):
             st.info(f"AI Agent: {msg.content}")
             
-    # Flat user text field execution (Zero nested indented lines below)
     user_input = st.text_input("Type your question here and press Enter:")
     
     if st.button("⚡ Send Message"):
@@ -134,4 +128,5 @@ if page == "🤖 Autonomous AI Support Agent":
             st.session_state.chat_history.append(HumanMessage(content=user_input))
             if not groq_key:
                 st.warning("⚠️ Enter your Groq Cloud Access Token inside the left sidebar control panel.")
-            else:
+            if groq_key:
+                system_rule = "Aap Zain Tech Automation Solutions ke official ai representative assistant hain. Hamari services DevOps, Security audits, Neural Network Machine Learning Models aur Web Apps hain. Pricing ya deployment deal ki baat ho toh kahein ke complete execution strategy ke liye founder Zain Ul Abadeen se direct call ya WhatsApp rabta karein: +923221837390."
