@@ -141,7 +141,7 @@ if selected_section == "🏢 Headquarters Showcase":
     with col_right:
         st.image("https://unsplash.com", caption="Zain Tech Infrastructure Management Node")
 
-elif selected_section == "🤖 Interactive Autonomous AI Support Agent":
+if selected_section == "🤖 Interactive Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
     st.write("Talk instantly with our system framework automation representative regarding technical metrics or deployment prices.")
     
@@ -162,4 +162,3 @@ elif selected_section == "🤖 Interactive Autonomous AI Support Agent":
         else:
             with st.chat_message("assistant"):
                 with st.spinner("⚡ Running programmatic pipeline lookup matrix..."):
-                    try:
