@@ -5,7 +5,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 # 1. Real-World Page Configurations
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="💻", layout="wide")
 
-# 2. Premium Real-World Software Agency Cyber Design (Advanced CSS)
+# 2. Premium Cyber Software Agency Design (Advanced CSS for Left and Right Panels)
 st.markdown("""
     <style>
     /* Dark Cyber Professional Base Theme */
@@ -14,6 +14,30 @@ st.markdown("""
         color: #f3f4f6;
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
+    
+    /* LEFT SIDEBAR PANEL MODERNIZATION */
+    section[data-testid="stSidebar"] {
+        background-color: #0b0f19 !important;
+        border-right: 1px solid #1f2937 !important;
+        padding-top: 20px !important;
+    }
+    /* Modern Styling for Radio Buttons inside Sidebar */
+    div[data-testid="stSidebarUserContent"] div.stRadio > div {
+        background-color: #111827 !important;
+        padding: 10px !important;
+        border-radius: 10px !important;
+        border: 1px solid #1f2937 !important;
+    }
+    div[data-testid="stSidebarUserContent"] div.stRadio label {
+        color: #9ca3af !important;
+        font-weight: 500 !important;
+        padding: 8px 5px !important;
+        transition: color 0.2s ease;
+    }
+    div[data-testid="stSidebarUserContent"] div.stRadio label:hover {
+        color: #60a5fa !important;
+    }
+    
     /* Fixed Chat Input Visibility - Deep Crisp Contrast Text */
     textarea[data-testid="stChatInputTextArea"] {
         color: #0f172a !important;
@@ -26,6 +50,7 @@ st.markdown("""
     textarea[data-testid="stChatInputTextArea"]::placeholder {
         color: #64748b !important;
     }
+    
     /* Corporate Tech Cards Architecture */
     .agency-card {
         background: linear-gradient(145deg, #1f2937, #111827);
@@ -52,6 +77,7 @@ st.markdown("""
         font-weight: 700;
         margin: 12px 0;
     }
+    
     /* Premium Header */
     .agency-header {
         text-align: center;
@@ -66,6 +92,7 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    
     /* Real World Buttons Styling */
     div.stButton > button {
         color: #030712 !important;
@@ -107,9 +134,9 @@ services_matrix = {
 }
 
 # 4. Multi-Page Layout Structure (Real World Left Navigation Panel)
-st.sidebar.markdown("<h2 style='color:#60a5fa;'>💻 ZAIN TECH ENGINES</h2>", unsafe_allow_html=True)
-selected_section = st.sidebar.radio("Corporate Directory Matrix:", [
-    "🏢 Corporate Headquarters Showcase",
+st.sidebar.markdown("<h2 style='color:#60a5fa; font-family:monospace;'>💻 ZAIN TECH ENGINES</h2>", unsafe_allow_html=True)
+selected_section = st.sidebar.radio("Corporate Directory:", [
+    "🏢 Headquarters Showcase",
     "⚙️ DevOps Infrastructure Solutions",
     "🛡️ Enterprise Cyber Security Matrix",
     "🧠 Machine & Deep Learning Engines",
@@ -118,7 +145,7 @@ selected_section = st.sidebar.radio("Corporate Directory Matrix:", [
 ])
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<h3 style='color:#a78bfa;'>🛠️ SECURITY DASHBOARD</h3>", unsafe_allow_html=True)
+st.sidebar.markdown("<h4 style='color:#a78bfa; font-family:monospace;'>🛠️ SECURITY CONFIG</h4>", unsafe_allow_html=True)
 groq_api_entry = st.sidebar.text_input("Enter Groq Cloud Access Token:", type="password")
 st.sidebar.info("Zain Tech Official Escalation Desk:\n📞 Call/WhatsApp: +92 322 1837390")
 
@@ -126,7 +153,7 @@ st.sidebar.info("Zain Tech Official Escalation Desk:\n📞 Call/WhatsApp: +92 32
 base_whatsapp_link = "https://wa.me"
 
 # ==================== PAGE 1: HEADQUARTERS SHOWCASE ====================
-if selected_section == "🏢 Corporate Headquarters Showcase":
+if selected_section == "🏢 Headquarters Showcase":
     st.markdown('<div class="agency-header"><div class="agency-title">ZAIN TECH</div><p style="color:#9ca3af; letter-spacing:2px; font-size:14px; text-transform:uppercase; margin-top:10px;">Enterprise Engineering • Automated Architectures</p></div>', unsafe_allow_html=True)
     
     c_left, c_right = st.columns([1.2, 1])
@@ -148,18 +175,3 @@ else:
     
     if target_key:
         st.title(target_key)
-        st.write("Review our live commercial technical service line packages below. Every deployment node contains full operations documentation support.")
-        
-        # Real-World Looped Matrix Generation Elements
-        for service in services_matrix[target_key]:
-            st.markdown(f"""
-            <div class="agency-card">
-                <span class="service-badge">{service['scope']}</span>
-                <h3 style="margin-top:0; color:#ffffff; font-size:22px;">{service['title']}</h3>
-                <p style="color:#9ca3af; font-size:14px; line-height:1.6;">{service['desc']}</p>
-                <div class="service-price">{service['price']} <span style="font-size:12px; color:#6b7280; font-weight:normal;">/ Base Implementation Node</span></div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # FLAT BUTTON DESIGN (Bina with block ke alignment error ko zero karne ke liye)
-            btn_key_cart = f"c_{service['id']}"
