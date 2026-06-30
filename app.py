@@ -2,23 +2,17 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-# 1. Enterprise Page Global Settings
+# 1. Enterprise Page Global Settings (Must be the very first command)
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="🏢", layout="wide")
 
-# 2. Premium Cyber Dark Base Theme with Network Grid Background Image Injection
+# 2. Premium Enterprise Dark Mode Core Styling (Ensures absolute text visibility)
 st.markdown("""
     <style>
-    /* Professional Tech Blueprint Background Wallpaper Injection */
     .stApp {
-        background-image: linear-gradient(rgba(3, 7, 18, 0.85), rgba(3, 7, 18, 0.95)), url('https://unsplash.com') !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-attachment: fixed !important;
-        color: #f3f4f6 !important;
+        background-color: #030712 !important;
+        color: #ffffff !important;
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-    
-    /* Left Sidebar Command Matrix Overhaul */
     section[data-testid="stSidebar"] {
         background-color: #0b0f19 !important;
         border-right: 1px solid #1f2937 !important;
@@ -29,27 +23,20 @@ st.markdown("""
         color: #ffffff !important;
         font-weight: bold !important;
     }
-    
-    /* Fixed Chat Input Control Contrast Fix */
     textarea[data-testid="stChatInputTextArea"] {
         color: #000000 !important;
         font-weight: bold !important;
         background-color: #ffffff !important;
     }
-    
-    /* Trust-Metric Block Configurations */
-    .trust-badge-container {
-        background: rgba(17, 24, 39, 0.75) !important;
-        border: 1px solid #1e293b !important;
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-        margin-bottom: 10px;
+    /* Fixing default text color overrides inside containers */
+    div.stMarkdown p, div.stText p, span {
+        color: #ffffff !important;
+        font-size: 16px !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Sidebar Corporate Navigation (Strict 3 Pages Layout Element)
+# 3. Sidebar Corporate Navigation (Strict 3 Pages Flat Architecture)
 st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
 page = st.sidebar.radio("Corporate Directory Matrix:", ["🏢 Corporate Overview", "⚙️ Enterprise Services Matrix", "🤖 Autonomous AI Support Agent"])
 
@@ -68,7 +55,7 @@ wa_link = "https://wa.me."
 if page == "🏢 Corporate Overview":
     st.title("🚀 ZAIN TECH AUTOMATION SOLUTIONS")
     st.subheader("Global Technology Consulting & Enterprise Software Transformation Mainframe")
-    st.write("Zain Tech Automation Solutions is a premier next-generation technology engineering corporation. We help modern enterprises scale operations globally by architecting highly-scalable distributed cloud networks, provisioning multi-tenant computing pipelines, designing data science neural matrices, and implementing zero-trust cyber security frameworks.")
+    st.write("Zain Tech Automation Solutions is a premier next-generation technology engineering corporation. Formed on the blueprint of premier global development firms like Systems Limited, we help modern enterprises transform operations by architecting highly-scalable distributed cloud networks, provisioning multi-tenant computing pipelines, designing data science neural matrices, and implementing zero-trust cyber security frameworks.")
     
     st.markdown("---")
     st.markdown("### 🏆 Enterprise Operations Integrity (Trust & Credibility Matrix)")
@@ -147,3 +134,11 @@ if page == "🤖 Autonomous AI Support Agent":
             with st.chat_message("assistant"): st.write(msg.content)
             
     user_input = st.chat_input("Ask Zain Tech Assistant Anything...")
+    if user_input:
+        with st.chat_message("user"): st.write(user_input)
+        st.session_state.chat_history.append(HumanMessage(content=user_input))
+        
+        if not groq_key:
+            st.warning("⚠️ High security cloud access credential required. Please type your Groq Cloud Access Token inside the sidebar dashboard.")
+        else:
+            with st.chat_message("assistant"):
