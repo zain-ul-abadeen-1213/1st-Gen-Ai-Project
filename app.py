@@ -2,15 +2,16 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-# 1. Page Global Setup
-st.set_page_config(page_title="Zain Tech", page_icon="💻", layout="wide")
+# 1. Enterprise Page Global Settings
+st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="🏢", layout="wide")
 
-# 2. Premium Cyber Dark CSS Style (Fixed Universal Text Contrast)
+# 2. Premium Enterprise Dark Mode Core Styling
 st.markdown("""
     <style>
     .stApp {
         background-color: #030712 !important;
         color: #f3f4f6 !important;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
     section[data-testid="stSidebar"] {
         background-color: #0b0f19 !important;
@@ -30,67 +31,80 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Sidebar Configuration Setup (Strict 3 Pages Layout)
+# 3. Sidebar Corporate Navigation (Strict 3 Pages Architecture)
 st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
-page = st.sidebar.radio("Corporate Directory:", ["🏠 Headquarters Showcase", "⚙️ Real-World Services Portfolio", "🤖 AI Support Agent Chat"])
+page = st.sidebar.radio("Corporate Directory Matrix:", ["🏢 Corporate Overview", "⚙️ Enterprise Services Matrix", "🤖 Autonomous AI Support Agent"])
 
 st.sidebar.markdown("---")
-groq_key = st.sidebar.text_input("Enter Groq Access Token:", type="password")
-st.sidebar.info("Official Support:\n📞 Call/WhatsApp: 03221837390")
+groq_key = st.sidebar.text_input("Enter Groq Cloud Access Token:", type="password")
+st.sidebar.info("Zain Tech Escalation Desk:\n📞 Call/WhatsApp: 03221837390")
 
 # Persistent Memory Initialization
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Universal Direct Contact WhatsApp Redirection Link
+# Global Official Corporate Communication Routing Endpoint
 wa_link = "https://wa.me."
 
-# ==================== PAGE 1: HOME SHOWCASE ====================
-if page == "🏠 Headquarters Showcase":
+# ==================== PAGE 1: CORPORATE OVERVIEW ====================
+if page == "🏢 Corporate Overview":
     st.title("🚀 ZAIN TECH AUTOMATION SOLUTIONS")
-    st.write("We engineer mission-critical cloud configurations, multi-layer computational machine architectures, predictive learning models, and secure full-stack backend platforms designed to automate operations flawlessly.")
-    st.info("👈 Use the Corporate Directory Matrix Menu inside the left sidebar panel to switch sections directly.")
+    st.subheader("Global Technology Consulting & Enterprise Software Transformation Mainframe")
+    st.write("Zain Tech Automation Solutions is a premier next-generation technology engineering corporation. We help modern enterprises scale operations globally by architecting highly-scalable distributed cloud networks, provisioning multi-tenant computing pipelines, designing data science neural matrices, and implementing zero-trust cyber security frameworks.")
+    st.info("👈 Use the Corporate Directory Menu inside the left sidebar panel to navigate our specialized engineering capabilities.")
     st.link_button("📞 Schedule Enterprise Consultation Now", wa_link)
 
-# ==================== PAGE 2: REAL-WORLD PORTFOLIO ====================
-if page == "⚙️ Real-World Services Portfolio":
-    st.title("⚡ Premium Engineering Services Matrix (Basic to Advance)")
-    st.write("Review our real-world tech stack catalog below. Every implementation node scales from basic local scripts up to deep advance global cloud structures.")
+# ==================== PAGE 2: REAL-WORLD SYSTEMS PORTFOLIO ====================
+if page == "⚙️ Enterprise Services Matrix":
+    st.title("⚙️ Global Engineering Capabilities & Core Technology Verticals")
+    st.write("Review our high-performance technical service catalog engineered to power modern enterprise infrastructure scales seamlessly.")
     
     # DevOps Vertical
     st.markdown("---")
-    st.markdown("### ⚙️ DevOps & Cloud Computing Operations")
-    st.write("🟢 **Level 1 (Basic):** Local Server Environment Config (Dockerized) • Static Web App Cloud Static Hosting Setup • Linux Server Shell Command Script Automation")
-    st.write("🟡 **Level 2 (Intermediate):** Core GitHub Actions CI/CD Pipeline Automation • Centralized Database Automated Replication Strategy • Basic Terraform Resource Scripting")
-    st.write("🔴 **Level 3 (Advance):** Production-Grade Kubernetes Elastic Auto-Scaling Clusters • High-Availability Multi-Region AWS / Google Cloud Global Pipelines")
-    st.link_button("📞 Order Cloud Frameworks via WhatsApp Live", wa_link)
+    st.markdown("### ☁️ Cloud Infrastructure & Enterprise DevOps Automation")
+    st.write("We design resilient multi-cloud strategies and zero-downtime microservices orchestration loops built to manage massive computational processing loads efficiently.")
+    st.write("🔹 **Infrastructure as Code (IaC):** Automated single-command deployment configurations using standard enterprise HashiCorp Terraform modules.")
+    st.write("🔹 **High-Availability Cloud Design:** Multi-region load balancing failovers, continuous backup replication channels on AWS, Azure, and Google Cloud.")
+    st.write("🔹 **Microservices Orchestration Mesh:** Production-grade Kubernetes auto-scaling clusters provisioning and multi-tenant container management.")
+    st.write("🔹 **Automated Delivery Channels:** Advanced continuous integration and continuous deployment (CI/CD) pipelines built via GitHub Actions and GitLab Runners.")
+    st.write("🔹 **System Optimization & Cost Audits:** Real-time computational node analysis and metrics tracking to minimize corporate cloud billing variables.")
+    st.link_button("🚀 Deploy Production Cloud Architecture via WhatsApp", wa_link)
 
     # Cyber Security Vertical
     st.markdown("---")
-    st.markdown("### 🛡️ Cyber Security Cloud Matrix")
-    st.write("🟢 **Level 1 (Basic):** SSL/TLS Certificate System Configuration • Basic WordPress/Shopify Site Security Hardening • Server Firewall Access Rules Tuning")
-    st.write("🟡 **Level 2 (Intermediate):** Automated Source Code Dependency Vulnerability Audits • Secure API Token Validation & Routing Protocols • Multi-Factor Authentication (MFA)")
-    st.write("🔴 **Level 3 (Advance):** Full-Scope Professional Black-Box Network Penetration Hacking Scans • Automated Zero-Trust Enterprise Key Server Configurations")
-    st.link_button("📞 Order Cyber Security Packages via WhatsApp Live", wa_link)
+    st.markdown("### 🛡️ Cyber Security Hardening & Vulnerability Assessments (VAPT)")
+    st.write("We safeguard mission-critical digital assets by deploying multi-layer defense perimeters and auditing application software logics comprehensively.")
+    st.write("🔹 **Full-Scope Penetration Testing:** Deep black-box and white-box network breach simulations to discover hidden infrastructure vulnerabilities.")
+    st.write("🔹 **Zero-Trust Access Identity Architecture:** Centralized secure credential rotation infrastructure integration leveraging modern secret vaults.")
+    st.write("🔹 **Application Logic Hardening:** Intercepting cross-site scripting (XSS), software code exploitation layers, and SQL injections completely.")
+    st.write("🔹 **Server Core Defense Hardening:** Linux kernel configuration access locks, secure cryptographic key enforcements, and strict firewall proxies.")
+    st.write("🔹 **Compliance & Source Auditing:** Real-time software dependency vulnerability analysis and formatting architecture for international safety clearance audits.")
+    st.link_button("🚀 Procure High-End Security Audits via WhatsApp", wa_link)
 
-    # AI & Machine Learning Vertical
+    # Data Science & AI Vertical
     st.markdown("---")
-    st.markdown("### 🧠 Data Science & Generative AI Matrix")
-    st.write("🟢 **Level 1 (Basic):** Automated Lead Generation Bot Web Processing • Basic Excel Sheet Formula Analytics Script Automation • Customer Feedback Sentiment Parsers")
-    st.write("🟡 **Level 2 (Intermediate):** Predictive Time-Series Revenue Forecasting Data Models • Corporate Documents OCR Intelligent Data Retrieval Pipelines")
-    st.write("🔴 **Level 3 (Advance):** Custom Autonomous LangChain Chat Agent Architectures • Real-Time Spatial Object Tracking Neural Computer Vision Nodes")
-    st.link_button("📞 Order AI Engines via WhatsApp Live", wa_link)
+    st.markdown("### 🧠 Predictive Analytics, Data Science & Generative AI")
+    st.write("We build sophisticated custom language modules and train state-of-the-art neural computation matrices that turn raw corporate data sets into operational value.")
+    st.write("🔹 **Autonomous Language Agents:** Engineering custom LangChain bot architectures capable of executing complex business processes programmatically.")
+    st.write("🔹 **Knowledge Bases & Retrieval (RAG):** Connecting large language models directly with enterprise PDF and Excel files via semantic vector databases.")
+    st.write("🔹 **Neural Computer Vision Systems:** Real-time convolutional camera frame scanning loops deployed for spatial object tracking and facial metrics analysis.")
+    st.write("🔹 **Predictive Revenue Forecasting:** Data science time-series mathematical models trained to project accurate business transactional flow trends.")
+    st.write("🔹 **Intelligent Document Processing (OCR):** High-speed multi-threaded parsing pipelines that interpret and classify complex data logs automatically.")
+    st.link_button("🚀 Build Custom Autonomous AI Agents via WhatsApp", wa_link)
 
-    # Web Systems & Automation Vertical
+    # Application Software Vertical
     st.markdown("---")
-    st.markdown("### 🌐 Web Systems & Headless Crawlers")
-    st.write("🟢 **Level 1 (Basic):** Landing Page Web Interface UI Responsive Deployments • Local Python Automation Web-Scraping Scripts • Local Database SQLite Data Backup Pipelines")
-    st.write("🟡 **Level 2 (Intermediate):** Secure RESTful API Backend Architectures with Python FastAPI • High-Speed Multi-Threaded Headless Selenium Automation Scrapers")
-    st.write("🔴 **Level 3 (Advance):** Next.js Enterprise Software Single-Page Application Interfaces • Scalable Distributed PostgreSQL Database Structuring Optimization")
-    st.link_button("📞 Order App Frameworks via WhatsApp Live", wa_link)
+    st.markdown("### 🌐 Full-Stack Web Dashboards & High-Speed Crawler Automation")
+    st.write("We develop secure enterprise application layers and automated data miners fueled by asynchronous data processing processing backend units.")
+    st.write("🔹 **Full-Stack Cloud Software:** High-performance single-page responsive web applications engineered with Next.js frontends and async Python FastAPI backends.")
+    st.write("🔹 **High-Scale Web Crawlers:** Multi-threaded headless Selenium browser automation bots built to bypass advanced anti-bot proxy firewalls.")
+    st.write("🔹 **Data Speed Caching Systems:** Distributed memory storage and low-latency database performance tuning optimized with advanced Redis caching setups.")
+    st.write("🔹 **Database Structuring Optimization:** Query index optimization and table partitioning designed to scale PostgreSQL databases handling millions of active logs.")
+    st.write("🔹 **Microservices Overhaul:** Seamless structural migration refactoring legacy applications into modern decoupled secure API micro-units.")
+    st.link_button("🚀 Order Production Software Platforms via WhatsApp", wa_link)
 
 # ==================== PAGE 3: AI CHAT AGENT ====================
-if page == "🤖 AI Support Agent Chat":
+if page == "🤖 Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
     st.write("Talk instantly with our system framework automation representative regarding technical metrics or deployment prices.")
     
