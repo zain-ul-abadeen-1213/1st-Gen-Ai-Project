@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 1. Global Page Configuration
+# 1. Page Global Setup
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="⚡", layout="wide")
 
 # 2. Advanced Neon Dark Custom CSS
@@ -43,11 +43,10 @@ input_key = st.sidebar.text_input("Enter Groq API Key:", value=st.session_state.
 st.session_state.groq_api_key = input_key
 st.sidebar.info("Official Support:\n📞 03221837390")
 
-# 5. Conditional Rendering Router
+# 5. Core Content Engine
 if selected_page == "🏠 Home Showcase":
     st.markdown('<div class="main-title">🚀 ZAIN TECH</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-title">AUTOMATION SOLUTIONS • NEXT-GEN AI MARKETPLACE</div>', unsafe_allow_html=True)
-    
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("### Welcome to the Future of Tech")
@@ -56,86 +55,80 @@ if selected_page == "🏠 Home Showcase":
     with col2:
         st.image("https://unsplash.com", caption="Zain Tech Next-Gen Systems")
 
-elif selected_page == "⚙️ DevOps Pipelines":
+if selected_page == "⚙️ DevOps Pipelines":
     st.markdown('<div class="page-header">⚙️ DevOps Cloud Pipelines Infrastructure</div>', unsafe_allow_html=True)
     st.write("We build automated scaling architecture designed to manage massive computation tasks across multiple networks.")
-    
     devops_items = [
         {"title": "Automated CI/CD Deployment Pipelines", "desc": "Continuous Integration & Deployment via GitHub Actions, Jenkins, and GitLab Runners. Zero-downtime application updates."},
         {"title": "Kubernetes Orchestration & Auto-Scaling", "desc": "Enterprise container provisioning, multi-tenant cluster management, and horizontal load balancing."},
         {"title": "Cloud Architecture & Infrastructure as Code (IaC)", "desc": "Automated resource setup on AWS, Google Cloud, and Azure platforms using specialized HashiCorp Terraform modules."}
     ]
     for item in devops_items:
-        with st.container():
-            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
-            c1, c2 = st.columns(2)
-            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
-            with c2: 
-                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+        st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+        with c2:
+            if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-elif selected_page == "🛡️ Cyber Security Matrix":
+if selected_page == "🛡️ Cyber Security Matrix":
     st.markdown('<div class="page-header">🛡️ High-End Cyber Security Matrix</div>', unsafe_allow_html=True)
     st.write("We protect enterprise assets by finding application backdoors before malicious entities can discover them.")
-    
     cyber_items = [
         {"title": "Full-Scope Penetration Testing (VAPT)", "desc": "Deep black-box and white-box network architecture scanning, custom API logic vulnerability assessment, and server exploit validation."},
         {"title": "Automated DevSecOps Vulnerability Scanners", "desc": "Integrating automatic real-time source code dependency scanners inside active deployment triggers to detect leak pipelines."},
         {"title": "Identity Access Management & Encryption", "desc": "Deploying zero-trust configurations, secure server key generation nodes, and end-to-end multi-layered database encryption layouts."}
     ]
     for item in cyber_items:
-        with st.container():
-            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
-            c1, c2 = st.columns(2)
-            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
-            with c2: 
-                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+        st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+        with c2:
+            if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-elif selected_page == "🧠 ML & Neural Networks":
+if selected_page == "🧠 ML & Neural Networks":
     st.markdown('<div class="page-header">🧠 Machine Learning & Deep Learning Matrices</div>', unsafe_allow_html=True)
     st.write("We train state-of-the-art predictive structures to turn raw enterprise data sets into highly accurate automated forecasting models.")
-    
     ai_items = [
         {"title": "Custom Analytical Forecasting Architectures", "desc": "Predictive regression engines, customer behaviour time-series projection algorithms, and multi-variable analytical data streams."},
         {"title": "Intelligent Computer Vision Models", "desc": "Advanced convolutional neural networks for object tracking, multi-point facial recognition configurations, and semantic pixel classification engines."},
         {"title": "Natural Language Networks & Agents", "desc": "LangChain autonomous agent execution setups, dynamic dataset vectors retrieval structures, and custom Llama tuning architectures."}
     ]
     for item in ai_items:
-        with st.container():
-            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
-            c1, c2 = st.columns(2)
-            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
-            with c2: 
-                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+        st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+        with c2:
+            if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-elif selected_page == "🌐 Apps & Automation":
+if selected_page == "🌐 Apps & Automation":
     st.markdown('<div class="page-header">🌐 Full-Stack Application Solutions</div>', unsafe_allow_html=True)
     st.write("We build fast, secure full-stack software dashboards using robust backend frameworks capable of handling hundreds of client transactions smoothly.")
-    
     web_items = [
         {"title": "High-Performance Cloud Web Apps", "desc": "Modern responsive application layouts built using Next.js, interactive Streamlit architectures, and fast asynchronous Python FastAPI backends."},
         {"title": "Automated Web Processing Engines (Scrapers)", "desc": "High-speed multi-threaded headless Selenium bots, automated pricing tracker modules, and programmatic API integrations."},
         {"title": "Database Optimization Solutions", "desc": "Setting up PostgreSQL databases, designing secure query execution nodes, and deploying memory caching systems using Redis pipelines."}
     ]
     for item in web_items:
-        with st.container():
-            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
-            c1, c2 = st.columns(2)
-            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
-            with c2: 
-                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+        st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+        c1, c2 = st.columns(2)
+        with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+        with c2:
+            if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-elif selected_page == "🤖 Talk to AI Agent":
+if selected_page == "🤖 Talk to AI Agent":
     from langchain_groq import ChatGroq
     from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
     st.markdown('<div class="page-header">🤖 Zain Tech Autonomous AI Assistant</div>', unsafe_allow_html=True)
     st.write("Talk directly with our live sales agent module regarding system integration specifications.")
-    for message in st.session_state.chat_history:
-        if isinstance(message, HumanMessage):
-            with st.chat_message("user", avatar="👤"):
-                st.write(message.content)
-        elif isinstance(message, AIMessage):
-            with st.chat_message("assistant", avatar="🤖"):
-                st.write(message.content)
+    for msg in st.session_state.chat_history:
+        if isinstance(msg, HumanMessage):
+            with st.chat_message("user", avatar="👤"): st.write(msg.content)
+        if isinstance(msg, AIMessage):
+            with st.chat_message("assistant", avatar="🤖"): st.write(msg.content)
     user_query = st.chat_input("Ask Zain Tech AI Agent...")
     if user_query:
-        if not st.session_state.groq_api_key:
+        with st.chat_message("user", avatar="👤"): st.write(user_query)
+        st.session_state.chat_history.append(HumanMessage(content=user_query))
+        with st.chat_message("assistant", avatar="🤖"):
+            with st.spinner("⚡ System thinking..."):
+                try:
