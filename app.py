@@ -174,6 +174,6 @@ elif selected_section != "🤖 Interactive Autonomous AI Support Agent":
         
         # Real-World Looped Matrix Generation Elements
         for service in services_matrix[target_key]:
-            st.markdown(f"""
+            st.markdown
             <div class="agency-card">
                 <span class="service-badge">{service['scope']}</span>
