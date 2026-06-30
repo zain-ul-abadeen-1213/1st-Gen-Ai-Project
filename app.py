@@ -5,7 +5,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 # 1. Real-World Page Configurations
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="💻", layout="wide")
 
-# 2. Premium Cyber Software Agency Design (Advanced CSS for Left and Right Panels)
+# 2. Premium Cyber Agency Design (Advanced CSS for Perfect High-Contrast Text)
 st.markdown("""
     <style>
     /* Dark Cyber Professional Base Theme */
@@ -15,27 +15,22 @@ st.markdown("""
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
     
-    /* LEFT SIDEBAR PANEL MODERNIZATION */
+    /* LEFT SIDEBAR PANEL TEXT CONTRAST FIX */
     section[data-testid="stSidebar"] {
         background-color: #0b0f19 !important;
         border-right: 1px solid #1f2937 !important;
-        padding-top: 20px !important;
     }
-    /* Modern Styling for Radio Buttons inside Sidebar */
-    div[data-testid="stSidebarUserContent"] div.stRadio > div {
-        background-color: #111827 !important;
-        padding: 10px !important;
-        border-radius: 10px !important;
-        border: 1px solid #1f2937 !important;
+    /* Making Sidebar Text Bright White and Bold */
+    div[data-testid="stSidebarUserContent"] div.stRadio label p {
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        font-size: 15px !important;
     }
-    div[data-testid="stSidebarUserContent"] div.stRadio label {
-        color: #9ca3af !important;
-        font-weight: 500 !important;
-        padding: 8px 5px !important;
-        transition: color 0.2s ease;
-    }
-    div[data-testid="stSidebarUserContent"] div.stRadio label:hover {
-        color: #60a5fa !important;
+    div[data-testid="stSidebarUserContent"] h2, 
+    div[data-testid="stSidebarUserContent"] h4,
+    div[data-testid="stSidebarUserContent"] label {
+        color: #ffffff !important;
+        font-weight: bold !important;
     }
     
     /* Fixed Chat Input Visibility - Deep Crisp Contrast Text */
@@ -134,7 +129,7 @@ services_matrix = {
 }
 
 # 4. Multi-Page Layout Structure (Real World Left Navigation Panel)
-st.sidebar.markdown("<h2 style='color:#60a5fa; font-family:monospace;'>💻 ZAIN TECH ENGINES</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
 selected_section = st.sidebar.radio("Corporate Directory:", [
     "🏢 Headquarters Showcase",
     "⚙️ DevOps Infrastructure Solutions",
@@ -145,7 +140,7 @@ selected_section = st.sidebar.radio("Corporate Directory:", [
 ])
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("<h4 style='color:#a78bfa; font-family:monospace;'>🛠️ SECURITY CONFIG</h4>", unsafe_allow_html=True)
+st.sidebar.markdown("#### 🛠️ SECURITY CONFIG")
 groq_api_entry = st.sidebar.text_input("Enter Groq Cloud Access Token:", type="password")
 st.sidebar.info("Zain Tech Official Escalation Desk:\n📞 Call/WhatsApp: +92 322 1837390")
 
@@ -166,7 +161,7 @@ if selected_section == "🏢 Headquarters Showcase":
         st.image("https://unsplash.com", caption="Zain Tech Mainframe Data Operations Nodes")
 
 # ==================== GENERIC CARD RENDER FOR CORES ====================
-else:
+elif selected_section != "🤖 Interactive Autonomous AI Support Agent":
     target_key = ""
     if "DevOps" in selected_section: target_key = "⚙️ DevOps Infrastructure"
     elif "Cyber" in selected_section: target_key = "🛡️ Cyber Security Cloud"
@@ -175,3 +170,10 @@ else:
     
     if target_key:
         st.title(target_key)
+        st.write("Review our live commercial technical service line packages below. Every deployment node contains full operations documentation support.")
+        
+        # Real-World Looped Matrix Generation Elements
+        for service in services_matrix[target_key]:
+            st.markdown(f"""
+            <div class="agency-card">
+                <span class="service-badge">{service['scope']}</span>
