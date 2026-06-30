@@ -30,7 +30,7 @@ if "chat_history" not in st.session_state:
 if "groq_api_key" not in st.session_state:
     st.session_state.groq_api_key = ""
 
-# 4. Sidebar Dynamic Menu Selector (Replacing st.navigation with clean selectbox)
+# 4. Sidebar Dynamic Menu Selector
 st.sidebar.markdown("## 🌐 NAVIGATION MENU")
 selected_page = st.sidebar.selectbox(
     "Choose a Platform Section:",
@@ -133,9 +133,11 @@ elif selected_page == "🤖 Talk to AI Agent":
 
     for message in st.session_state.chat_history:
         if isinstance(message, HumanMessage):
-            with st.chat_message("user", avatar="👤"): st.write(message.content)
+            with st.chat_message("user", avatar="👤"):
+                st.write(message.content)
         elif isinstance(message, AIMessage):
-            with st.chat_message("assistant", avatar="🤖"): st.write(message.content)
+            with st.chat_message("assistant", avatar="🤖"):
+                st.write(message.content)
 
     user_query = st.chat_input("Ask Zain Tech AI Agent...")
 
