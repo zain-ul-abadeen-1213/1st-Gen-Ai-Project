@@ -1,11 +1,11 @@
 import streamlit as st
 from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage, AIMessage
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 # 1. Page Config
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="⚡", layout="wide")
 
-# 2. Advanced AI Neon Glow Styling (Custom CSS with perfect contrast fixes)
+# 2. Advanced AI Neon Glow Styling (Custom CSS)
 st.markdown("""
     <style>
     /* Main Background aur Font Setting */
@@ -22,7 +22,7 @@ st.markdown("""
     
     /* White Boxes / Streamlit Buttons Text Contrast Fix */
     div.stButton > button {
-        color: #0d1117 !important; /* Dark text for light/white buttons */
+        color: #0d1117 !important;
         background-color: #ffffff !important;
         font-weight: bold !important;
         border: 1px solid #00f2fe !important;
@@ -156,7 +156,7 @@ with col_chat:
         with st.chat_message("assistant", avatar="🤖"):
             with st.spinner("⚡ Processing system engine knowledge..."):
                 try:
-                    # AI System Persona Configurations
+                    # System Persona Definition
                     system_instruction = """
                     Aap Zain Tech Automation Solutions ke official enterprise system agent hain. 
                     Aapka main core job user ko business solutions guide karna aur services deal karna hai.
@@ -170,13 +170,19 @@ with col_chat:
                     6. Full-Stack Secure Custom Website & App Applications
 
                     CRITICAL SALES RULES:
-                    - Agar user price poochaey, deal ki baat karey, ya custom pricing mangey, toh usey kahen: 
+                    - Agar user price poochaey, deal ki baat karey, ya custom pricing mangey, toh usey lazmi kahen: 
                       'Pricing and custom design discussion ke liye aap direct humaray founder (Zain Ul Abadeen) se direct call ya WhatsApp par rabta karein: 03221837390.'
-                    - Hamesha isi configuration dataset ke mutabiq professional and helping tareeqay se Urdu/Hindi/English mix mein jawab dein.
+                    - Hamesha isi configuration dataset ke mutabiq professional aur helpful tareeqay se Urdu/Hindi/English mix mein jawab dein.
                     """
 
-                    llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=groq_api_key).bind(system=system_instruction)
-                    ai_response = llm.invoke(st.session_state.chat_history)
+                    # Messages list taiyar karna jisme SystemMessage sab se upar ho
+                    messages_to_send = [SystemMessage(content=system_instruction)] + st.session_state.chat_history
+
+                    # Initialize model safely without .bind
+                    llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=groq_api_key)
+                    
+                    # Passing the correct message structure
+                    ai_response = llm.invoke(messages_to_send)
                     
                     st.write(ai_response.content)
                     st.session_state.chat_history.append(AIMessage(content=ai_response.content))
