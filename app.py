@@ -127,10 +127,8 @@ elif selected_page == "🌐 Apps & Automation":
 elif selected_page == "🤖 Talk to AI Agent":
     from langchain_groq import ChatGroq
     from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-
     st.markdown('<div class="page-header">🤖 Zain Tech Autonomous AI Assistant</div>', unsafe_allow_html=True)
     st.write("Talk directly with our live sales agent module regarding system integration specifications.")
-
     for message in st.session_state.chat_history:
         if isinstance(message, HumanMessage):
             with st.chat_message("user", avatar="👤"):
@@ -138,8 +136,6 @@ elif selected_page == "🤖 Talk to AI Agent":
         elif isinstance(message, AIMessage):
             with st.chat_message("assistant", avatar="🤖"):
                 st.write(message.content)
-
     user_query = st.chat_input("Ask Zain Tech AI Agent...")
-
     if user_query:
         if not st.session_state.groq_api_key:
