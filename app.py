@@ -1,191 +1,141 @@
 import streamlit as st
-from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-# 1. Page Config
+# 1. Page Global Setup
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="⚡", layout="wide")
 
-# 2. Advanced AI Neon Glow Styling (Custom CSS)
+# 2. Global Styling for all pages (Dark Futuristic Theme)
 st.markdown("""
     <style>
-    /* Main Background aur Font Setting */
-    .stApp {
-        background-color: #0b0f17;
-        color: #e6edf3;
-    }
-    
-    /* Chat Messages Text Contrast */
-    div[data-testid="stChatMessage"] p, div[data-testid="stChatMessage"] li {
-        color: #e6edf3 !important;
-        font-size: 16px;
-    }
-    
-    /* White Boxes / Streamlit Buttons Text Contrast Fix */
-    div.stButton > button {
-        color: #0d1117 !important;
-        background-color: #ffffff !important;
-        font-weight: bold !important;
-        border: 1px solid #00f2fe !important;
-        transition: all 0.3s ease;
-    }
-    
-    /* Button Hover Effect */
-    div.stButton > button:hover {
-        background-color: #00f2fe !important;
-        color: #0d1117 !important;
-        box-shadow: 0px 0px 15px rgba(0, 242, 254, 0.6);
-    }
-    
-    /* Main Brand Title */
+    .stApp { background-color: #0b0f17; color: #e6edf3; }
+    div[data-testid="stChatMessage"] p { color: #e6edf3 !important; font-size: 16px; }
     .main-title {
         background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-align: center;
-        font-family: 'Courier New', monospace;
-        font-weight: bold;
-        font-size: 42px;
-        text-shadow: 0px 0px 25px rgba(0, 242, 254, 0.5);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        text-align: center; font-family: 'Courier New', monospace; font-weight: bold; font-size: 42px;
+        text-shadow: 0px 0px 25px rgba(0, 242, 254, 0.5); margin-bottom: 5px;
     }
-    
-    /* Subtitle Styling */
-    .sub-title {
-        text-align: center;
-        color: #8b949e;
-        font-size: 14px;
-        letter-spacing: 3px;
-        margin-bottom: 30px;
-    }
-    
-    /* Service Cards Layout */
-    .service-card {
-        background-color: #161b22;
-        padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #30363d;
-        margin-bottom: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-    
-    .service-title {
-        color: #00f2fe;
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 8px;
-    }
-    
-    .service-desc {
-        color: #8b949e;
-        font-size: 13px;
-        margin-bottom: 5px;
-    }
+    .sub-title { text-align: center; color: #8b949e; font-size: 14px; letter-spacing: 3px; margin-bottom: 30px; }
+    .page-header { color: #00f2fe; font-family: 'Courier New', monospace; font-weight: bold; font-size: 28px; margin-bottom: 20px; border-bottom: 2px solid #30363d; padding-bottom: 10px; }
+    div.stButton > button { color: #0d1117 !important; background-color: #ffffff !important; font-weight: bold !important; border: 1px solid #00f2fe !important; width: 100%; transition: all 0.3s ease; }
+    div.stButton > button:hover { background-color: #00f2fe !important; box-shadow: 0px 0px 15px rgba(0, 242, 254, 0.6); }
+    .service-box { background-color: #161b22; padding: 25px; border-radius: 12px; border: 1px solid #30363d; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    .service-name { color: #00f2fe; font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+    .service-details { color: #c9d1d9; font-size: 15px; line-height: 1.6; margin-bottom: 15px; }
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Headers Branding
-st.markdown('<div class="main-title">🚀 ZAIN TECH</div>', unsafe_allow_html=True)
-st.markdown('<div class="sub-title">AUTOMATION SOLUTIONS • AUTOMATED ENTERPRISE MARKETPLACE</div>', unsafe_allow_html=True)
+# Shared Global Sidebar Header across all navigation endpoints
+st.sidebar.markdown("## 🛠️ ZAIN TECH PANEL")
+groq_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
+st.sidebar.info("Official Support:\n📞 03221837390")
 
-# 4. Layout Columns (Left Marketplace Matrix, Right AI Agent)
-col_market, col_chat = st.columns([1.2, 1])
-
-with col_market:
-    st.markdown("### 🛠️ Our Core Tech Services Matrix")
+# 3. Defining Multi-Page Functions
+def home_page():
+    st.markdown('<div class="main-title">🚀 ZAIN TECH</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sub-title">AUTOMATION SOLUTIONS • NEXT-GEN AI MARKETPLACE</div>', unsafe_allow_html=True)
     
-    # 5. Core Services Dataset
-    services_data = [
-        {"name": "⚙️ Enterprise DevOps Pipelines", "desc": "CI/CD setups, AWS/Azure Cloud management, Kubernetes cluster scaling & Dockerization."},
-        {"name": "🛡️ Cyber Security Assessment & Hardening", "desc": "Penetration testing, source code auditing, security compliance & vulnerability patches."},
-        {"name": "🧠 Predictive Machine Learning Engines", "desc": "Custom business forecasting data models, regression, cluster analysis & analytical pipelines."},
-        {"name": "👁️ Deep Learning & Neural Architectures", "desc": "Computer Vision systems, NLP processing networks, and intelligent OCR data models."},
-        {"name": "🤖 Hyper-Automation Core Bots", "desc": "Custom LangChain engine configurations, Selenium web scrapers & automated API processes."},
-        {"name": "🌐 Full-Stack Cloud Web Architecture", "desc": "Secure, high-traffic Enterprise web applications built using Next.js, Python FastAPI, & Streamlit."}
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("### Welcome to the Future of Tech")
+        st.write("Zain Tech Automation Solutions provides elite-tier enterprise architecture engineered to scale your computational pipelines, data analytics, and full-stack security infrastructures.")
+        st.write("👈 Use the **Navigation Menu on the Left Sidebar** to explore our separate specialized service pages.")
+    with col2:
+        st.image("https://unsplash.com", caption="Zain Tech Next-Gen Ecosystem Systems")
+
+def devops_page():
+    st.markdown('<div class="page-header">⚙️ DevOps Cloud Pipelines Infrastructure</div>', unsafe_allow_html=True)
+    st.write("We build automated scaling architecture designed to manage massive computation tasks across multiple availability networks.")
+    
+    devops_items = [
+        {"title": "Automated CI/CD Deployment Pipelines", "desc": "Continuous Integration & Deployment via GitHub Actions, Jenkins, and GitLab Runners. Zero-downtime application updates."},
+        {"title": "Kubernetes Orchestration & Auto-Scaling", "desc": "Enterprise container provisioning, multi-tenant cluster management, and horizontal load balancing."},
+        {"title": "Cloud Architecture & Infrastructure as Code (IaC)", "desc": "Automated resource setup on AWS, Google Cloud, and Azure platforms using specialized HashiCorp Terraform modules."}
     ]
-    
-    # Rendering Service Cards & Interactive Buttons
-    for service in services_data:
-        st.markdown(f"""
-        <div class="service-card">
-            <div class="service-title">{service['name']}</div>
-            <div class="service-desc">{service['desc']}</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        btn_col1, btn_col2 = st.columns(2)
-        with btn_col1:
-            if st.button("🛒 Add to Cart", key=f"cart_{service['name']}"):
-                st.toast(f"Added to queue: {service['name']}")
-        with btn_col2:
-            if st.button("📞 Get Service / Contact Now", key=f"contact_{service['name']}"):
-                st.success("Direct Contact: 📞 Call/WhatsApp: 03221837390")
+    for item in devops_items:
+        with st.container():
+            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+            c1, c2 = st.columns(2)
+            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+            with c2: 
+                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-    st.markdown("---")
-    st.caption("⚡ Dynamically loading +100 granular technical sub-modules (Microservices) inside the core systemic index matrix.")
-
-with col_chat:
-    st.markdown("### 🤖 Zain Tech Autonomous Agent")
+def cyber_page():
+    st.markdown('<div class="page-header">🛡️ High-End Cyber Security Matrix</div>', unsafe_allow_html=True)
+    st.write("We protect enterprise assets by finding application backdoors before malicious entities can discover them.")
     
-    # Sidebar control configurations
-    st.sidebar.markdown("### 🛠️ CONTROL PANEL")
-    groq_api_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
-    st.sidebar.info("Designed & Developed by Zain Tech.\n📞 Official Line: 03221837390")
+    cyber_items = [
+        {"title": "Full-Scope Penetration Testing (VAPT)", "desc": "Deep black-box and white-box network architecture scanning, custom API logic vulnerability assessment, and server exploit validation."},
+        {"title": "Automated DevSecOps Vulnerability Scanners", "desc": "Integrating automatic real-time source code dependency scanners inside active deployment triggers to detect leak pipelines."},
+        {"title": "Identity Access Management & Encryption", "desc": "Deploying zero-trust configurations, secure server key generation nodes, and end-to-end multi-layered database encryption layouts."}
+    ]
+    for item in cyber_items:
+        with st.container():
+            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+            c1, c2 = st.columns(2)
+            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+            with c2: 
+                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+
+def ai_ml_page():
+    st.markdown('<div class="page-header">🧠 Machine Learning & Deep Learning Matrices</div>', unsafe_allow_html=True)
+    st.write("We train state-of-the-art predictive structures to turn raw enterprise data sets into highly accurate automated forecasting models.")
+    
+    ai_items = [
+        {"title": "Custom Analytical Forecasting Architectures", "desc": "Predictive regression engines, customer behaviour time-series projection algorithms, and multi-variable analytical data streams."},
+        {"title": "Intelligent Computer Vision Models", "desc": "Advanced convolutional neural networks for object tracking, multi-point facial recognition configurations, and semantic pixel classification engines."},
+        {"title": "Natural Language Networks & Agents", "desc": "LangChain autonomous agent execution setups, dynamic dataset vectors retrieval structures, and custom Llama tuning architectures."}
+    ]
+    for item in ai_items:
+        with st.container():
+            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+            c1, c2 = st.columns(2)
+            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+            with c2: 
+                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+
+def web_app_page():
+    st.markdown('<div class="page-header">🌐 Full-Stack Application Solutions</div>', unsafe_allow_html=True)
+    st.write("We build fast, secure full-stack software dashboards using robust backend frameworks capable of handling hundreds of client transactions smoothly.")
+    
+    web_items = [
+        {"title": "High-Performance Cloud Web Apps", "desc": "Modern responsive application layouts built using Next.js, interactive Streamlit architectures, and fast asynchronous Python FastAPI backends."},
+        {"title": "Automated Web Processing Engines (Scrapers)", "desc": "High-speed multi-threaded headless Selenium bots, automated pricing tracker modules, and programmatic API integrations."},
+        {"title": "Database Optimization Solutions", "desc": "Setting up PostgreSQL databases, designing secure query execution nodes, and deploying memory caching systems using Redis pipelines."}
+    ]
+    for item in web_items:
+        with st.container():
+            st.markdown(f'<div class="service-box"><div class="service-name">{item["title"]}</div><div class="service-details">{item["desc"]}</div></div>', unsafe_allow_html=True)
+            c1, c2 = st.columns(2)
+            with c1: st.button("🛒 Add to Cart", key=f"cart_{item['title']}")
+            with c2: 
+                if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
+
+def chat_agent_page():
+    from langchain_groq import ChatGroq
+    from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+
+    st.markdown('<div class="page-header">🤖 Zain Tech Autonomous AI Assistant</div>', unsafe_allow_html=True)
+    st.write("Talk directly with our live sales agent module regarding system integration specifications.")
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
 
-    # Chat Log Stream Render
     for message in st.session_state.chat_history:
         if isinstance(message, HumanMessage):
-            with st.chat_message("user", avatar="👤"):
-                st.write(message.content)
+            with st.chat_message("user", avatar="👤"): st.write(message.content)
         elif isinstance(message, AIMessage):
-            with st.chat_message("assistant", avatar="🤖"):
-                st.write(message.content)
+            with st.chat_message("assistant", avatar="🤖"): st.write(message.content)
 
     user_query = st.chat_input("Ask Zain Tech AI Agent...")
 
     if user_query:
-        if not groq_api_key:
-            st.info("⚠️ Please enter your Groq API Key in the sidebar control panel.")
+        if not groq_key:
+            st.info("⚠️ Please enter your Groq API Key in the left sidebar control panel.")
             st.stop()
 
-        with st.chat_message("user", avatar="👤"):
-            st.write(user_query)
+        with st.chat_message("user", avatar="👤"): st.write(user_query)
         st.session_state.chat_history.append(HumanMessage(content=user_query))
 
         with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("⚡ Processing system engine knowledge..."):
+            with st.spinner("⚡ System thinking..."):
                 try:
-                    # System Persona Definition
-                    system_instruction = """
-                    Aap Zain Tech Automation Solutions ke official enterprise system agent hain. 
-                    Aapka main core job user ko business solutions guide karna aur services deal karna hai.
-
-                    Core Expert Services Provided by Zain Tech:
-                    1. DevOps Cloud Architecture & Automation
-                    2. Cyber Security Vulnerability Assessments & Audits
-                    3. Machine Learning (ML) Data Pipelines & Processing
-                    4. Deep Learning Neural Networks & Multi-Modal AI Solutions
-                    5. Robotic Process Automation Tools & Scrapers
-                    6. Full-Stack Secure Custom Website & App Applications
-
-                    CRITICAL SALES RULES:
-                    - Agar user price poochaey, deal ki baat karey, ya custom pricing mangey, toh usey lazmi kahen: 
-                      'Pricing and custom design discussion ke liye aap direct humaray founder (Zain Ul Abadeen) se direct call ya WhatsApp par rabta karein: 03221837390.'
-                    - Hamesha isi configuration dataset ke mutabiq professional aur helpful tareeqay se Urdu/Hindi/English mix mein jawab dein.
-                    """
-
-                    # Messages list taiyar karna jisme SystemMessage sab se upar ho
-                    messages_to_send = [SystemMessage(content=system_instruction)] + st.session_state.chat_history
-
-                    # Initialize model safely without .bind
-                    llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=groq_api_key)
-                    
-                    # Passing the correct message structure
-                    ai_response = llm.invoke(messages_to_send)
-                    
-                    st.write(ai_response.content)
-                    st.session_state.chat_history.append(AIMessage(content=ai_response.content))
-                    
-                except Exception as e:
-                    st.error(f"System Error: {e}")
