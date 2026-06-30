@@ -1,13 +1,13 @@
 import streamlit as st
 
-# 1. Page Global Setup
+# 1. Global Page Configuration
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="⚡", layout="wide")
 
-# 2. Global Styling for all pages (Dark Futuristic Theme)
+# 2. Advanced Neon Dark Custom CSS
 st.markdown("""
     <style>
     .stApp { background-color: #0b0f17; color: #e6edf3; }
-    div[data-testid="stChatMessage"] p { color: #e6edf3 !important; font-size: 16px; }
+    div[data-testid="stChatMessage"] p, div[data-testid="stChatMessage"] li { color: #e6edf3 !important; font-size: 16px; }
     .main-title {
         background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
         -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -24,13 +24,27 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Shared Global Sidebar Header across all navigation endpoints
-st.sidebar.markdown("## 🛠️ ZAIN TECH PANEL")
-groq_key = st.sidebar.text_input("Enter Groq API Key:", type="password")
+# 3. Persistent State Maintenance
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+if "groq_api_key" not in st.session_state:
+    st.session_state.groq_api_key = ""
+
+# 4. Sidebar Dynamic Menu Selector (Replacing st.navigation with clean selectbox)
+st.sidebar.markdown("## 🌐 NAVIGATION MENU")
+selected_page = st.sidebar.selectbox(
+    "Choose a Platform Section:",
+    ["🏠 Home Showcase", "⚙️ DevOps Pipelines", "🛡️ Cyber Security Matrix", "🧠 ML & Neural Networks", "🌐 Apps & Automation", "🤖 Talk to AI Agent"]
+)
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🛠️ CONTROL PANEL")
+input_key = st.sidebar.text_input("Enter Groq API Key:", value=st.session_state.groq_api_key, type="password")
+st.session_state.groq_api_key = input_key
 st.sidebar.info("Official Support:\n📞 03221837390")
 
-# 3. Defining Multi-Page Functions
-def home_page():
+# 5. Conditional Rendering Router
+if selected_page == "🏠 Home Showcase":
     st.markdown('<div class="main-title">🚀 ZAIN TECH</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-title">AUTOMATION SOLUTIONS • NEXT-GEN AI MARKETPLACE</div>', unsafe_allow_html=True)
     
@@ -38,13 +52,13 @@ def home_page():
     with col1:
         st.markdown("### Welcome to the Future of Tech")
         st.write("Zain Tech Automation Solutions provides elite-tier enterprise architecture engineered to scale your computational pipelines, data analytics, and full-stack security infrastructures.")
-        st.write("👈 Use the **Navigation Menu on the Left Sidebar** to explore our separate specialized service pages.")
+        st.write("👈 Use the **Navigation Menu in the Left Sidebar** to explore our separate specialized service sections seamlessly.")
     with col2:
-        st.image("https://unsplash.com", caption="Zain Tech Next-Gen Ecosystem Systems")
+        st.image("https://unsplash.com", caption="Zain Tech Next-Gen Systems")
 
-def devops_page():
+elif selected_page == "⚙️ DevOps Pipelines":
     st.markdown('<div class="page-header">⚙️ DevOps Cloud Pipelines Infrastructure</div>', unsafe_allow_html=True)
-    st.write("We build automated scaling architecture designed to manage massive computation tasks across multiple availability networks.")
+    st.write("We build automated scaling architecture designed to manage massive computation tasks across multiple networks.")
     
     devops_items = [
         {"title": "Automated CI/CD Deployment Pipelines", "desc": "Continuous Integration & Deployment via GitHub Actions, Jenkins, and GitLab Runners. Zero-downtime application updates."},
@@ -59,7 +73,7 @@ def devops_page():
             with c2: 
                 if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-def cyber_page():
+elif selected_page == "🛡️ Cyber Security Matrix":
     st.markdown('<div class="page-header">🛡️ High-End Cyber Security Matrix</div>', unsafe_allow_html=True)
     st.write("We protect enterprise assets by finding application backdoors before malicious entities can discover them.")
     
@@ -76,7 +90,7 @@ def cyber_page():
             with c2: 
                 if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-def ai_ml_page():
+elif selected_page == "🧠 ML & Neural Networks":
     st.markdown('<div class="page-header">🧠 Machine Learning & Deep Learning Matrices</div>', unsafe_allow_html=True)
     st.write("We train state-of-the-art predictive structures to turn raw enterprise data sets into highly accurate automated forecasting models.")
     
@@ -93,7 +107,7 @@ def ai_ml_page():
             with c2: 
                 if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-def web_app_page():
+elif selected_page == "🌐 Apps & Automation":
     st.markdown('<div class="page-header">🌐 Full-Stack Application Solutions</div>', unsafe_allow_html=True)
     st.write("We build fast, secure full-stack software dashboards using robust backend frameworks capable of handling hundreds of client transactions smoothly.")
     
@@ -110,15 +124,12 @@ def web_app_page():
             with c2: 
                 if st.button("📞 Get Service", key=f"get_{item['title']}"): st.success("Rabta karein: 03221837390")
 
-def chat_agent_page():
+elif selected_page == "🤖 Talk to AI Agent":
     from langchain_groq import ChatGroq
     from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
     st.markdown('<div class="page-header">🤖 Zain Tech Autonomous AI Assistant</div>', unsafe_allow_html=True)
     st.write("Talk directly with our live sales agent module regarding system integration specifications.")
-
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
 
     for message in st.session_state.chat_history:
         if isinstance(message, HumanMessage):
@@ -129,13 +140,4 @@ def chat_agent_page():
     user_query = st.chat_input("Ask Zain Tech AI Agent...")
 
     if user_query:
-        if not groq_key:
-            st.info("⚠️ Please enter your Groq API Key in the left sidebar control panel.")
-            st.stop()
-
-        with st.chat_message("user", avatar="👤"): st.write(user_query)
-        st.session_state.chat_history.append(HumanMessage(content=user_query))
-
-        with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("⚡ System thinking..."):
-                system_instruction = "Aap Zain Tech Automation Solutions ke official ai assistant hain. DevOps, Security, AI, Full Stack platforms ke baray mein baat karein. Agar koi price poochaey toh kahen custom design ke liye founder Zain Ul Abadeen se is number par direct contact karein Call/WhatsApp: 03221837390."
+        if not st.session_state.groq_api_key:
