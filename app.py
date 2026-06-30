@@ -55,19 +55,12 @@ if page == "🏢 Corporate Overview":
     st.title("🚀 ZAIN TECH AUTOMATION SOLUTIONS")
     st.subheader("Global Technology Consulting & Enterprise Software Transformation Mainframe")
     st.write("Zain Tech Automation Solutions is a premier next-generation technology engineering corporation. Formed on the blueprint of premier global development firms like Systems Limited, we help modern enterprises transform operations by architecting highly-scalable distributed cloud networks, provisioning multi-tenant computing pipelines, designing data science neural matrices, and implementing zero-trust cyber security frameworks.")
-    
     st.markdown("---")
     st.markdown("### 🏆 Enterprise Operations Integrity (Trust & Credibility Matrix)")
-    
-    # 3 Column Real-World Trust Metric Display
     m_col1, m_col2, m_col3 = st.columns(3)
-    with m_col1:
-        st.metric(label="System Architecture SLA", value="99.99% Uptime", delta="Guaranteed Active")
-    with m_col2:
-        st.metric(label="Global Security Audit Pass", value="ISO 27001 Ready", delta="Zero Vulnerabilities")
-    with m_col3:
-        st.metric(label="Production Frameworks", value="100+ Enterprise Nodes", delta="Fully Documented")
-        
+    m_col1.metric(label="System Architecture SLA", value="99.99% Uptime", delta="Guaranteed Active")
+    m_col2.metric(label="Global Security Audit Pass", value="ISO 27001 Ready", delta="Zero Vulnerabilities")
+    m_col3.metric(label="Production Frameworks", value="100+ Enterprise Nodes", delta="Fully Documented")
     st.markdown("---")
     st.info("👈 Use the Corporate Directory Menu inside the left sidebar panel to navigate our specialized engineering capabilities.")
     st.link_button("📞 Schedule Enterprise Consultation Now", wa_link)
@@ -81,7 +74,7 @@ if page == "⚙️ Enterprise Services Matrix":
     st.markdown("---")
     st.markdown("### ☁️ Cloud Infrastructure & Enterprise DevOps Automation")
     st.write("We design resilient multi-cloud strategies and zero-downtime microservices orchestration loops built to manage massive computational processing loads efficiently.")
-    st.write("🔹 **Infrastructure as Code (IaC):** Automated single-command deployment configurations using standard enterprise HashiCorp Terraform modules.")
+    st.write("🔹 **Infrastructure as Code (IaCode):** Automated single-command deployment configurations using standard enterprise HashiCorp Terraform modules.")
     st.write("🔹 **High-Availability Cloud Design:** Multi-region load balancing failovers, continuous backup replication channels on AWS, Azure, and Google Cloud.")
     st.write("🔹 **Microservices Orchestration Mesh:** Production-grade Kubernetes auto-scaling clusters provisioning and multi-tenant container management.")
     st.write("🔹 **Automated Delivery Channels:** Advanced continuous integration and continuous deployment (CI/CD) pipelines built via GitHub Actions and GitLab Runners.")
@@ -104,10 +97,10 @@ if page == "⚙️ Enterprise Services Matrix":
     st.markdown("### 🧠 Predictive Analytics, Data Science & Generative AI")
     st.write("We build sophisticated custom language modules and train state-of-the-art neural computation matrices that turn raw corporate data sets into operational value.")
     st.write("🔹 **Autonomous Language Agents:** Engineering custom LangChain bot architectures capable of executing complex business processes programmatically.")
-    st.write("🔹 **Knowledge Bases & Retrieval (RAG):** Connecting large language models directly with enterprise PDF and Excel files via semantic vector databases.")
+    st.write("🔹 **Knowledge Bases & Retrieval (RAG System):** Connecting large language models directly with enterprise PDF and Excel files via semantic vector databases.")
     st.write("🔹 **Neural Computer Vision Systems:** Real-time convolutional camera frame scanning loops deployed for spatial object tracking and facial metrics analysis.")
     st.write("🔹 **Predictive Revenue Forecasting:** Data science time-series mathematical models trained to project accurate business transactional flow trends.")
-    st.write("🔹 **Intelligent Document Processing (OCR):** High-speed multi-threaded parsing pipelines that interpret and classify complex data logs automatically.")
+    st.write("🔹 **Intelligent Document Processing (OCR Tool):** High-speed multi-threaded parsing pipelines that interpret and classify complex data logs automatically.")
     st.link_button("🚀 Build Custom Autonomous AI Agents via WhatsApp", wa_link)
 
     # Application Software Vertical
@@ -121,21 +114,24 @@ if page == "⚙️ Enterprise Services Matrix":
     st.write("🔹 **Microservices Overhaul:** Seamless structural migration refactoring legacy applications into modern decoupled secure API micro-units.")
     st.link_button("🚀 Order Production Software Platforms via WhatsApp", wa_link)
 
-# ==================== PAGE 3: AI CHAT AGENT ====================
+# ==================== PAGE 3: AI CHAT AGENT (SUPER FLAT ERROR-FREE EXECUTION) ====================
 if page == "🤖 Autonomous AI Support Agent":
     st.title("🤖 Zain Tech Autonomous Enterprise Operations Agent")
-    st.write("Talk instantly with our system framework automation representative regarding technical metrics or deployment prices.")
+    st.write("Talk instantly with our system framework representative regarding technical metrics or deployment prices.")
     
+    # Display message logs
     for msg in st.session_state.chat_history:
         if isinstance(msg, HumanMessage):
             st.text(f"User: {msg.content}")
         if isinstance(msg, AIMessage):
             st.info(f"AI Agent: {msg.content}")
             
-    user_input = st.chat_input("Ask Zain Tech Assistant Anything...")
-    if user_input:
-        st.session_state.chat_history.append(HumanMessage(content=user_input))
-        
-        if not groq_key:
-            st.warning("⚠️ High security cloud access credential required. Please type your Groq Cloud Access Token inside the sidebar dashboard.")
-        else:
+    # Flat user text field execution (Zero nested indented lines below)
+    user_input = st.text_input("Type your question here and press Enter:")
+    
+    if st.button("⚡ Send Message"):
+        if user_input:
+            st.session_state.chat_history.append(HumanMessage(content=user_input))
+            if not groq_key:
+                st.warning("⚠️ Enter your Groq Cloud Access Token inside the left sidebar control panel.")
+            else:
