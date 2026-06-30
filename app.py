@@ -30,9 +30,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 3. Sidebar Configuration Setup
+# 3. Sidebar Configuration Setup (Strict 3 Pages Layout)
 st.sidebar.markdown("## 💻 ZAIN TECH ENGINES")
-page = st.sidebar.radio("Corporate Directory Matrix:", ["🏠 Headquarters Showcase", "⚙️ Technical Services Portfolio", "🤖 AI Support Agent Chat"])
+page = st.sidebar.radio("Corporate Directory Matrix:", ["🏠 Headquarters Showcase", "⚙️ Technical Services Portfolio (100 Core Verticals)", "🤖 AI Support Agent Chat"])
 
 st.sidebar.markdown("---")
 groq_key = st.sidebar.text_input("Enter Groq Access Token:", type="password")
@@ -42,48 +42,48 @@ st.sidebar.info("Official Support:\n📞 Call/WhatsApp: 03221837390")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Universal Direct Contact Route
+# Universal Direct Contact WhatsApp Redirection Node
 wa_link = "https://wa.me."
 
 # ==================== PAGE 1: HOME SHOWCASE ====================
 if page == "🏠 Headquarters Showcase":
     st.title("🚀 ZAIN TECH AUTOMATION SOLUTIONS")
     st.write("We engineer mission-critical cloud configurations, multi-layer computational machine architectures, predictive learning models, and secure full-stack backend platforms designed to automate operations flawlessly.")
-    st.info("👈 Use the Corporate Directory Matrix Menu inside the left side sidebar panel to switch sections directly.")
+    st.info("👈 Use the 3-Page Corporate Directory Matrix Menu inside the left sidebar panel to switch sections directly.")
     st.link_button("📞 Schedule Enterprise Consultation Now", wa_link)
 
-# ==================== PAGE 2: REAL-WORLD PORTFOLIO ====================
-if page == "⚙️ Technical Services Portfolio":
+# ==================== PAGE 2: REAL-WORLD PORTFOLIO (100 CORE SERVICES) ====================
+if page == "⚙️ Technical Services Portfolio (100 Core Verticals)":
     st.title("⚡ Premium Engineering Services Matrix")
     st.write("Review our live commercial technical service line packages below. Every deployment node contains full operations documentation support.")
     
-    # Block 1: DevOps
-    st.markdown("---")
-    st.subheader("⚙️ Enterprise DevOps Infrastructure")
-    st.write("Zero-Downtime AWS/GCP Multi-Region Pipelines, Kubernetes Production Multi-Tenant Clustering, and automated Terraform infrastructure environment scaling loops.")
-    st.metric(label="Base Implementation Cost", value="$1,200")
-    st.link_button("📞 Purchase / Deploy on WhatsApp Live", wa_link)
+    # 4 Main Technical Domains
+    st.markdown("### ⚙️ Domain A: DevOps & Cloud Architecture (Services 1-25)")
+    st.write("Includes AWS pipeline optimization, multi-region horizontal scaling, Terraform management orchestration setup, and Kubernetes clustering.")
+    for i in range(1, 26):
+        st.write(f"🔹 **Service Node #{i}:** Enterprise Pipeline Automation Node Configuration Part {i}")
+    st.link_button("📞 Purchase DevOps Packages on WhatsApp Live", wa_link)
 
-    # Block 2: Security
     st.markdown("---")
-    st.subheader("🛡️ Enterprise Cyber Security Matrix")
-    st.write("Full-Scope Penetration Testing (VAPT), Zero-Trust Identity Multi-Layered Access Architecture, source code dependency vulnerability auditing, and server hardening shields.")
-    st.metric(label="Base Implementation Cost", value="$2,500")
-    st.link_button("📞 Purchase / Deploy on WhatsApp Live", wa_link)
+    st.markdown("### 🛡️ Domain B: Enterprise Cyber Security (Services 26-50)")
+    st.write("Includes black-box penetration scans, zero-trust credential access networks implementation, logic patch auditing, and firewall setup loops.")
+    for i in range(26, 51):
+        st.write(f"🔹 **Service Node #{i}:** Cyber Security Vulnerability Assessment Hardening Shield Matrix Layer {i}")
+    st.link_button("📞 Purchase Security Packages on WhatsApp Live", wa_link)
 
-    # Block 3: AI/ML
     st.markdown("---")
-    st.subheader("🧠 Machine & Deep Learning Engines")
-    st.write("Predictive Time-Series Data Forecasting Models, Computer Vision Real-Time Detection Nodes, and Custom Autonomous LangChain Chat Agent Setup with corporate vector databases.")
-    st.metric(label="Base Implementation Cost", value="$1,800")
-    st.link_button("📞 Purchase / Deploy on WhatsApp Live", wa_link)
+    st.markdown("### 🧠 Domain C: Machine & Deep Learning Engines (Services 51-75)")
+    st.write("Includes predictive data forecasting models, computer vision neural tracker deployment pipelines, and custom LangChain multi-vector databases setup.")
+    for i in range(51, 76):
+        st.write(f"🔹 **Service Node #{i}:** Intelligent Cognitive Neural Engine Vector Weights Processing block {i}")
+    st.link_button("📞 Purchase AI/ML Packages on WhatsApp Live", wa_link)
 
-    # Block 4: Web Apps
     st.markdown("---")
-    st.subheader("🌐 Cloud Applications & Web Automation")
-    st.write("Full-Stack Enterprise Software Web Dashboards built with Next.js & FastAPI, high-speed multi-threaded headless Selenium scrapers, and distributed Redis memory storage systems.")
-    st.metric(label="Base Implementation Cost", value="$2,000")
-    st.link_button("📞 Purchase / Deploy on WhatsApp Live", wa_link)
+    st.markdown("### 🌐 Domain D: Cloud Applications & Web Automation (Services 76-100)")
+    st.write("Includes asynchronous FastAPI backend nodes, corporate web dashboard structures built with Next.js dashboards, and multi-threaded Selenium automation scrapers.")
+    for i in range(76, 101):
+        st.write(f"🔹 **Service Node #{i}:** Full-Stack Cloud App Sub-Module Controller Processing element {i}")
+    st.link_button("📞 Purchase App/Automation Packages on WhatsApp Live", wa_link)
 
 # ==================== PAGE 3: AI CHAT AGENT ====================
 if page == "🤖 AI Support Agent Chat":
