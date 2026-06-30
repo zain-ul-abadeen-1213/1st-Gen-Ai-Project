@@ -5,7 +5,7 @@ from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 # 1. Real-World Page Configurations
 st.set_page_config(page_title="Zain Tech Automation Solutions", page_icon="💻", layout="wide")
 
-# 2. Premium Real-World Software Agency Cyber Design (Advanced CSS & JS Injections)
+# 2. Premium Real-World Software Agency Cyber Design (Advanced CSS)
 st.markdown("""
     <style>
     /* Dark Cyber Professional Base Theme */
@@ -34,11 +34,6 @@ st.markdown("""
         padding: 24px;
         margin-bottom: 20px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .agency-card:hover {
-        transform: translateY(-2px);
-        border-color: #3b82f6;
     }
     .service-badge {
         background-color: #1e3a8a;
@@ -71,15 +66,20 @@ st.markdown("""
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    </style>
-    
-    <script>
-    /* JavaScript Logic injection via DOM configuration to securely track application system selections */
-    function trackCartEvent(serviceName) {
-        console.log("System Tracking Active: " + serviceName);
-        localStorage.setItem("last_checked_service", serviceName);
+    /* Real World Buttons Styling */
+    div.stButton > button {
+        color: #030712 !important;
+        background-color: #ffffff !important;
+        font-weight: bold !important;
+        border: 1px solid #3b82f6 !important;
+        padding: 10px !important;
+        width: 100% !important;
     }
-    </script>
+    div.stButton > button:hover {
+        background-color: #3b82f6 !important;
+        color: #ffffff !important;
+    }
+    </style>
 """, unsafe_allow_html=True)
 
 # 3. Secure Core Dataset (Real Industry Technical Frameworks & Live Pricing structures)
@@ -127,20 +127,19 @@ base_whatsapp_link = "https://wa.me"
 
 # ==================== PAGE 1: HEADQUARTERS SHOWCASE ====================
 if selected_section == "🏢 Corporate Headquarters Showcase":
-    st.markdown('<div class="agency-header"><div class="agency-title">ZAIN TECH AUTOMATION SOLUTIONS</div><p style="color:#9ca3af; letter-spacing:2px; font-size:14px; text-transform:uppercase; margin-top:10px;">Enterprise Engineering • Automated Architectures</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="agency-header"><div class="agency-title">ZAIN TECH</div><p style="color:#9ca3af; letter-spacing:2px; font-size:14px; text-transform:uppercase; margin-top:10px;">Enterprise Engineering • Automated Architectures</p></div>', unsafe_allow_html=True)
     
     c_left, c_right = st.columns([1.2, 1])
     with c_left:
         st.markdown("### Next-Gen System Engineering For Modern Enterprise Scales")
         st.write("Zain Tech Automation Solutions engineers mission-critical cloud configurations, multi-layer computational machine architectures, predictive learning models, and secure full-stack backend platforms designed to automate operations flawlessly.")
         st.write("👈 Use the **Corporate Directory Matrix Menu** inside the left side command interface to explore our modular premium technology sectors directly.")
-        st.markdown(f'<a href="{base_whatsapp_link}General%20Enterprise%20Consultation" target="_blank"><button style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 14px 28px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 14px 0 rgba(59,131,246,0.4);">📞 Schedule System Infrastructure Consultation</button></a>', unsafe_allow_html=True)
+        st.markdown(f'<a href="{base_whatsapp_link}General%20Enterprise%20Consultation" target="_blank"><button style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 14px 28px; font-weight: bold; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 14px 0 rgba(59,131,246,0.4); width:100%;">📞 Schedule System Infrastructure Consultation</button></a>', unsafe_allow_html=True)
     with c_right:
         st.image("https://unsplash.com", caption="Zain Tech Mainframe Data Operations Nodes")
 
 # ==================== GENERIC CARD RENDER FOR CORES ====================
 else:
-    # Filter mapping key names configurations
     target_key = ""
     if "DevOps" in selected_section: target_key = "⚙️ DevOps Infrastructure"
     elif "Cyber" in selected_section: target_key = "🛡️ Cyber Security Cloud"
@@ -162,5 +161,5 @@ else:
             </div>
             """, unsafe_allow_html=True)
             
-            c_cart, c_buy = st.columns(2)
-            with c_cart:
+            # FLAT BUTTON DESIGN (Bina with block ke alignment error ko zero karne ke liye)
+            btn_key_cart = f"c_{service['id']}"
